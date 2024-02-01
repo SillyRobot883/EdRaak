@@ -7,17 +7,23 @@ void main() {
   runApp(The_game());
 }
 
+// ...
+
 class The_game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ImageMatchingGameScreen(),
+      home: SafeArea(
+        child: ImageMatchingGameScreen(),
+      ),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
       ),
     );
   }
 }
+
+// ...
 
 class ImageMatchingGameScreen extends StatefulWidget {
   @override
@@ -40,7 +46,15 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
       'images/Ball.png',
       'images/Ball.png',
     ],
-    ['images/Clocks.png', 'images/Clocks.png', 'images/Apple.png'],
+    ['images/C.png', 'images/C.png', 'images/Apple.png'],
+
+    [
+      'images/Egg.png',
+      'images/Battery.png',
+      'images/Battery.png',
+      'images/Ball.png',
+      'images/Tree.png'
+    ],
     // Add more levels as needed
   ];
 
@@ -48,7 +62,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
   List<String> Questions = [
     "كم عدد الكرات ؟",
     "كم عدد التفاحات ؟",
-    "كم عدد الساعات ؟"
+    "كم عدد الساعات ؟",
+    "كم عدد البيضات ؟"
   ];
   int currentLevel = 1;
   int score = 0;
@@ -77,7 +92,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
         _confettiController.play();
       } else {
         // If the user answered the last question, check if the answer is correct
-        if (correctAnswers[levelsImages.length - 1] == 2) {
+        if (correctAnswers[levelsImages.length - 1] == 1) {
           // If the answer is correct, increase the score
           score++;
         }

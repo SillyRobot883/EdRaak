@@ -1,12 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:confetti/confetti.dart';
 
-class ResultPage extends StatelessWidget {
+class ResultPage extends StatefulWidget {
   final int score;
   final VoidCallback onRetryPressed;
 
   ResultPage({required this.score, required this.onRetryPressed});
+
+  @override
+  _ResultPageState createState() => _ResultPageState();
+}
+
+class _ResultPageState extends State<ResultPage> {
+  late ConfettiController _confettiController;
+
+  @override
+  void initState() {
+    super.initState();
+    _confettiController = ConfettiController();
+    if (widget.score == 4) {
+      _startConfetti();
+    }
+  }
+
+  void _startConfetti() {
+    _confettiController.play();
+    Future.delayed(Duration(seconds: 3), () {
+      _confettiController.stop();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +38,7 @@ class ResultPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-                'images/Reslutimage.png'), // Replace with your actual image path
+            image: AssetImage('images/Reslutimage.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -23,8 +46,14 @@ class ResultPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              ConfettiWidget(
+                confettiController: _confettiController,
+                blastDirectionality: BlastDirectionality.explosive,
+                shouldLoop: false,
+                colors: const [Colors.blue, Colors.pink, Colors.purple],
+              ),
               Text(
-                'نقاطك: $score',
+                'نقاطك: ${widget.score}',
                 style: GoogleFonts.tajawal(
                   fontSize: 24.0,
                   color: Colors.white,
@@ -35,13 +64,15 @@ class ResultPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Retry button pressed, restart the game
-                  onRetryPressed();
+                  widget.onRetryPressed();
                   Navigator.pop(context);
                 },
                 child: Text(
                   'إعادة',
                   style: GoogleFonts.tajawal(
-                      fontSize: 27.0, fontWeight: FontWeight.bold),
+                    fontSize: 27.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               SizedBox(height: 10.0),
@@ -54,11 +85,8 @@ class ResultPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  // Set background color
                   primary: Colors.blue,
-                  // Set text color
                   onPrimary: Colors.white,
-                  // Set minimum width and height for the button
                   minimumSize: Size(224, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -67,9 +95,10 @@ class ResultPage extends StatelessWidget {
                 child: Text(
                   'الصفحة الرئيسية',
                   style: GoogleFonts.tajawal(
-                      fontSize: 27.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 27.0,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -77,5 +106,11 @@ class ResultPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
   }
 }
