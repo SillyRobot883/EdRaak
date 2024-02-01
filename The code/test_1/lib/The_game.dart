@@ -46,7 +46,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
       'images/Ball.png',
       'images/Ball.png',
     ],
-    ['images/C.png', 'images/C.png', 'images/Apple.png'],
+    ['images/Clocks.png', 'images/Clocks.png', 'images/Apple.png'],
 
     [
       'images/Egg.png',
