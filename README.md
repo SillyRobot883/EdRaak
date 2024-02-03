@@ -1,5 +1,16 @@
 # EdRaak
 
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Acknowledgments](#acknowledgments)
+   - [UI](#images)
+   - [Code](#code)
+      - [Confetti Animation](#confetti-animation)
+      - [Custom Fonts (Tajawal)](#custom-fonts-tajawal)
+
 ## Overview
 
 The goal of the EdRaak project is to develop an educational game library tailored for children with autism. The software includes a diverse collection of interactive games and puzzles designed to enhance physical, social, cognitive, and emotional abilities within a positive and engaging environment.
@@ -28,7 +39,7 @@ To get started with EdRaak, follow these steps:
 
 ## Acknowledgments
 
-### Images
+### User Interface 
 
 - UI assets provided by [Din Mobile Game UI](https://www.figma.com/community/file/1180593133226454532/din-mobile-game-ui?searchSessionId=ls5c3toa-o3wh097cv2)
 
