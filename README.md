@@ -6,7 +6,7 @@
 2. [Features](#features)
 3. [Installation](#installation)
 4. [Acknowledgments](#acknowledgments)
-   - [UI](#images)
+   - [UI](#UI)
    - [Code](#code)
       - [Confetti Animation](#confetti-animation)
       - [Custom Fonts (Tajawal)](#custom-fonts-tajawal)
@@ -39,7 +39,7 @@ To get started with EdRaak, follow these steps:
 
 ## Acknowledgments
 
-### User Interface 
+### UI
 
 - UI assets provided by [Din Mobile Game UI](https://www.figma.com/community/file/1180593133226454532/din-mobile-game-ui?searchSessionId=ls5c3toa-o3wh097cv2)
 
