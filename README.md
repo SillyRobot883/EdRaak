@@ -25,3 +25,18 @@ To get started with EdRaak, follow these steps:
 3. Run the application:
    ```bash
    npm start
+
+## Acknowledgments
+
+### Images
+
+- UI assets provided by [Din Mobile Game UI](https://www.figma.com/community/file/1180593133226454532/din-mobile-game-ui?searchSessionId=ls5c3toa-o3wh097cv2)
+
+### Code
+
+- **Confetti Animation:**
+  - Library: [Confetti](https://pub.dev/packages/confetti)
+
+- **Custom Fonts (Tajawal):**
+  - Font: Tajawal
+  - Library: [Google Fonts](https://pub.dev/packages/google_fonts)
