@@ -50,7 +50,11 @@ class _ResultPageState extends State<ResultPage> {
                 confettiController: _confettiController,
                 blastDirectionality: BlastDirectionality.explosive,
                 shouldLoop: false,
-                colors: const [Colors.blue, Colors.pink, Colors.purple],
+                colors: const [
+                  Colors.blue,
+                  Colors.pink,
+                  Colors.purple
+                ], // Changing the color of the confetti
               ),
               Text(
                 'نقاطك: ${widget.score}',
