@@ -50,10 +50,10 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
 
     [
       'images/Egg.png',
-      'images/Battery.png',
+      'images/Battery.png',//add an image
       'images/Battery.png',
       'images/Ball.png',
-      'images/Tree.png'
+      'images/Tree.png'//add an image
     ],
     // Add more levels as needed
   ];
