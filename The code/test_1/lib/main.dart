@@ -24,56 +24,55 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('EdRaak'),
-      ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
                 'images/Main_menu_Image.png'), // Replace with your actual image path
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 70.0),
-              ElevatedButton(
-                  child: Text(
-                    'العب',
-                    style: GoogleFonts.tajawal(
-                      fontSize: 27.0,
-                      fontWeight: FontWeight.bold,
+        child: Container(
+          margin: const EdgeInsets.only(top: 10),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 80.0),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => The_game()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      // Set background color
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
                     ),
+                    child: Text(
+                      'العب',
+                      style: GoogleFonts.tajawal(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
+                ElevatedButton(
+                  child: Text(
+                    'تسجيل دخول',
+                    style: GoogleFonts.tajawal(
+                        fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => The_game()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    // Set background color
-                    primary: Colors.blue,
-                    // Set text color
-                    onPrimary: Colors.white,
-                  )),
-              ElevatedButton(
-                child: Text(
-                  'تسجيل دخول',
-                  style: GoogleFonts.tajawal(
-                      fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()),
-                  );
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

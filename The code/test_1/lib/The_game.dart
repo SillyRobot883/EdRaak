@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 import 'package:test_1/ResultPage.dart';
@@ -50,10 +52,10 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
 
     [
       'images/Egg.png',
-      'images/Battery.png',//add an image
+      'images/Battery.png', //add an image
       'images/Battery.png',
       'images/Ball.png',
-      'images/Tree.png'//add an image
+      'images/Tree.png' //add an image
     ],
     // Add more levels as needed
   ];
@@ -73,7 +75,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
   @override
   void initState() {
     super.initState();
-    _confettiController = ConfettiController(duration: Duration(seconds: 3));
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 3));
   }
 
   void restartGame() {
@@ -145,7 +148,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/BackgroundImage.png'),
                 fit: BoxFit.cover,
@@ -156,25 +159,51 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20.0),
-              Text(
-                Questions[currentLevel - 1],
-                style: GoogleFonts.tajawal(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              SizedBox(height: 20.0),
-              for (String image in levelsImages[currentLevel - 1])
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    image,
-                    width: 100.0,
-                    height: 100.0,
+              const SizedBox(height: 47.0),
+              Container(
+                height: 40,
+                width: 220,
+                margin: const EdgeInsets.only(right: 20),
+                decoration: BoxDecoration(
+                    color: Colors.brown[300],
+                    borderRadius: BorderRadius.circular(10)),
+                child: Center(
+                  child: Text(
+                    Questions[currentLevel - 1],
+                    style: GoogleFonts.tajawal(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              SizedBox(height: 20.0),
+              ),
+              const SizedBox(height: 20.0),
+              Container(
+                margin: const EdgeInsets.all(30),
+                height: 500,
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemCount: levelsImages[currentLevel - 1].length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(30),
+                      height: 40,
+                      width: 40,
+                      child: Image.asset(
+                        levelsImages[currentLevel - 1][index],
+                        width: 70.0,
+                        height: 70.0,
+                        fit: BoxFit.contain,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 20.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -200,16 +229,16 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
             top: 40.0,
             right: 10.0,
             child: Container(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Text(
                 'النقاط: $score',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 14.0,
+                  fontSize: 20.0,
                 ),
               ),
             ),
@@ -240,12 +269,12 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
           }
         },
         style: ElevatedButton.styleFrom(
-          primary: Colors.transparent,
+          backgroundColor: Colors.transparent,
           shadowColor: Colors.transparent,
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
           ),
