@@ -27,7 +27,7 @@ class _ResultPageState extends State<ResultPage> {
 
   void _startConfetti() {
     _confettiController.play();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       _confettiController.stop();
     });
   }
@@ -36,7 +36,7 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/Reslutimage.png'),
             fit: BoxFit.cover,
@@ -64,7 +64,7 @@ class _ResultPageState extends State<ResultPage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 60.0),
+              const SizedBox(height: 60.0),
               ElevatedButton(
                 onPressed: () {
                   // Retry button pressed, restart the game
@@ -79,7 +79,7 @@ class _ResultPageState extends State<ResultPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               ElevatedButton(
                 onPressed: () {
                   // Main Menu button pressed, navigate to the main menu
@@ -89,9 +89,9 @@ class _ResultPageState extends State<ResultPage> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  onPrimary: Colors.white,
-                  minimumSize: Size(224, 50),
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  minimumSize: const Size(224, 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),

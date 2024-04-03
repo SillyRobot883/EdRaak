@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/The_game.dart';
+import 'package:test_1/main.dart';
 
 void LoginPage1() {
   runApp(MyApp());
@@ -36,11 +38,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Edrak Game  Login'),
-      ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
                 "images/Login_Page_Background.png"), // Replace with your image path
@@ -50,53 +49,87 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              image: AssetImage("images/main_CharacterTheme.png"),
-              height: 100,
-              width: 100,
+            Stack(
+              children: [
+                const Image(
+                  image: AssetImage("images/main_CharacterTheme.png"),
+                  height: 150,
+                  width: 150,
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 130, left: 30),
+                  child: Text(
+                    'إدراك',
+                    style: GoogleFonts.tajawal(
+                      fontSize: 35.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 16.0),
-            Text(
-              'Edrak',
-              style: TextStyle(
-                fontSize: 24.0, // Adjust the font size as needed
-                fontWeight: FontWeight.bold,
-                color: Colors.white, // Set text color to white
+            const SizedBox(height: 16.0),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 60),
+              child: TextField(
+                controller: _usernameController,
+                style: const TextStyle(
+                  color: Colors.black,
+                ),
+                cursorColor: Colors.brown[400],
+                decoration: InputDecoration(
+                    labelText: 'اسم المستخدم',
+                    labelStyle: GoogleFonts.tajawal(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    fillColor: Colors.white70,
+                    filled: true),
               ),
             ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                labelText: 'Username',
-                fillColor: Colors.white,
+            const SizedBox(height: 16.0),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 60),
+              child: TextField(
+                controller: _passwordController,
+                obscureText: true,
+                cursorColor: Colors.brown[400],
+                decoration: InputDecoration(
+                    labelText: 'كلمة السر',
+                    labelStyle: GoogleFonts.tajawal(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    fillColor: Colors.white70,
+                    filled: true),
               ),
             ),
-            SizedBox(height: 16.0),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                fillColor: Colors.white,
-                filled: true,
-              ),
-            ),
-            SizedBox(height: 32.0),
+            const SizedBox(height: 32.0),
             ElevatedButton(
-              onPressed: _login,
-              child: Text('Login'),
+              child: Text(
+                'تسجيل دخول',
+                style: GoogleFonts.tajawal(
+                    fontSize: 20.0, fontWeight: FontWeight.bold),
+              ),
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MainApp(),
+                    ),
+                    (route) => false);
+              },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 5.0),
             ElevatedButton(
               onPressed: () {
-                // TODO: Implement play button action
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => The_game()),
-                );
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => The_game()));
               },
-              child: Text('Play as a guest'),
+              child: Text(
+                'إلعب كـضيف',
+                style: GoogleFonts.tajawal(
+                    fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),
