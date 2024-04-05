@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/LoginPage.dart';
+import 'package:test_1/Settings.dart';
 import 'package:test_1/The_game.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,7 +39,7 @@ class MainMenu extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 80.0),
+                const SizedBox(height: 95.0),
                 ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -58,6 +59,9 @@ class MainMenu extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     )),
+                const SizedBox(
+                  height: 5,
+                ),
                 ElevatedButton(
                   child: Text(
                     'تسجيل دخول',
@@ -68,6 +72,22 @@ class MainMenu extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => LoginPage()),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                ElevatedButton(
+                  child: Text(
+                    'الإعدادات',
+                    style: GoogleFonts.tajawal(
+                        fontSize: 16.0, fontWeight: FontWeight.bold),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => settings()),
                     );
                   },
                 ),

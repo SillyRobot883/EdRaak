@@ -1,7 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
+import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_1/ResultPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,6 +24,8 @@ class The_game extends StatelessWidget {
     );
   }
 }
+
+@override
 
 // ...
 
@@ -72,11 +74,33 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
 
   late ConfettiController _confettiController;
 
+  Color co = Colors.grey;
+
   @override
   void initState() {
     super.initState();
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 3));
+    loadingData();
+  }
+
+  void loadingData() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    var color = pref.getString("color");
+    setState(() {
+      if (color == "amber") {
+        co = Colors.amber;
+      }
+      if (color == "white") {
+        co = Colors.white;
+      }
+      if (color == "blue") {
+        co = Colors.blue;
+      }
+      if (color == "grey") {
+        co = Colors.grey;
+      }
+    });
   }
 
   void restartGame() {
@@ -253,7 +277,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
       width: 60.0,
       height: 60.0,
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: co,
         borderRadius: BorderRadius.circular(10.0),
       ),
       child: ElevatedButton(
@@ -274,8 +298,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
         ),
         child: Text(
           text,
-          style: const TextStyle(
-            color: Colors.white,
+          style: TextStyle(
+            color: co == Colors.white ? Colors.black : Colors.white,
             fontSize: 20.0,
           ),
         ),
