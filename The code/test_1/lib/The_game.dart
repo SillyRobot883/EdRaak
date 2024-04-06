@@ -83,7 +83,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
     super.initState();
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 3));
- SettingsPage
+
     loadingData();
   }
 
@@ -104,7 +104,6 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
         co = Colors.grey;
       }
     });
- main
   }
 
   void restartGame() {
@@ -302,13 +301,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
         ),
         child: Text(
           text,
- SettingsPage
           style: TextStyle(
             color: co == Colors.white ? Colors.black : Colors.white,
-
-          style: const TextStyle(
-            color: Colors.white,
-main
             fontSize: 20.0,
           ),
         ),
