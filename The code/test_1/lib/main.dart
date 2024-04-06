@@ -39,7 +39,9 @@ class MainMenu extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+SettingsPage
                 const SizedBox(height: 95.0),
+main
                 ElevatedButton(
                     onPressed: () {
                       Navigator.push(
@@ -59,14 +61,17 @@ class MainMenu extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     )),
+SettingsPage
                 const SizedBox(
                   height: 5,
                 ),
+ main
                 ElevatedButton(
                   child: Text(
                     'تسجيل دخول',
                     style: GoogleFonts.tajawal(
                         fontSize: 16.0, fontWeight: FontWeight.bold),
+SettingsPage
                   ),
                   onPressed: () {
                     Navigator.push(
@@ -83,11 +88,16 @@ class MainMenu extends StatelessWidget {
                     'الإعدادات',
                     style: GoogleFonts.tajawal(
                         fontSize: 16.0, fontWeight: FontWeight.bold),
+main
                   ),
                   onPressed: () {
                     Navigator.push(
                       context,
+ SettingsPage
                       MaterialPageRoute(builder: (context) => settings()),
+
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+ main
                     );
                   },
                 ),

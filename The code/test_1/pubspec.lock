@@ -97,6 +97,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+SettingsPage
   file:
     dependency: transitive
     description:
@@ -105,6 +106,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.0"
+ main
   flutter:
     dependency: "direct main"
     description: flutter
@@ -165,6 +167,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+ SettingsPage
   intl:
     dependency: transitive
     description:
@@ -173,6 +176,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.18.1"
+
+ main
   leak_tracker:
     dependency: transitive
     description:
@@ -237,6 +242,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+SettingsPage
   path_parsing:
     dependency: transitive
     description:
@@ -245,6 +251,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+ main
   path_provider:
     dependency: transitive
     description:
