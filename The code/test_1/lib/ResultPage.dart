@@ -38,7 +38,7 @@ class _ResultPageState extends State<ResultPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/Reslutimage.png'),
+            image: AssetImage('images/ResultImage.png'),
             fit: BoxFit.cover,
           ),
         ),
