@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:test_1/LoginPage.dart';
-import 'package:test_1/Settings.dart';
-import 'package:test_1/The_game.dart';
+import '../game1/LoginPage.dart';
+import '../game1/Settings.dart';
+import '../game1/The_game.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 
 void main() {
   runApp(MainApp());
@@ -44,8 +45,10 @@ class MainMenu extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => The_game()),
+                        MaterialPageRoute(builder: (context) => GameCatalog()),
                       );
+                      //make it go to the catalog page
+                      // was The_game()
                     },
                     style: ElevatedButton.styleFrom(
                       // Set background color
