@@ -76,6 +76,7 @@ flutter:
     - lib/assets/image/images/ResultImage.png
     - 'lib/assets/image/images/main_CharacterTheme.png'
     - 'lib/assets/image/images/Login_Page_Background.png'
+    - 'lib/assets/image/images/SettingsPage.jpg'
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
