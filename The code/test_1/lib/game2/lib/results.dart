@@ -6,6 +6,8 @@ import 'package:test_1/game2/lib/data/questions.dart';
 import 'package:test_1/game2/lib/questions_summary/questions_summary.dart';
 import 'package:test_1/game2/lib/start_screen.dart';
 import 'package:test_1/main.dart';
+import 'package:test_1/main_screen/main_app.dart';
+
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
@@ -13,9 +15,7 @@ class ResultsScreen extends StatelessWidget {
     required this.chosenAnswers,
     required this.onRestart, 
   });
-
-    
-
+  
   final void Function() onRestart;
   final List<String> chosenAnswers;
 

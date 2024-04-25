@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_1/main.dart';
+import 'package:test_1/main_screen/main_app.dart';
 import '../../game1/The_game.dart';
 import 'package:test_1/choose_game_screen/choose_game_button.dart';
 import 'package:test_1/choose_game_screen/game_button1.dart';
@@ -24,6 +25,7 @@ class GameCatalog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Container(
           decoration: const BoxDecoration(
