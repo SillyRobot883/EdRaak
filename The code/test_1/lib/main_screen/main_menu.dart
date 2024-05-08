@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
-import 'package:test_1/game1/LoginPage.dart';
-import 'package:test_1/game1/Settings.dart';
+import 'package:test_1/main_screen/LoginPage.dart';
+import 'package:test_1/main_screen/Settings.dart';
 
 
 class MainMenu extends StatelessWidget {
