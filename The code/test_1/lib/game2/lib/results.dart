@@ -1,13 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/game2/lib/data/questions.dart';
 import 'package:test_1/game2/lib/questions_summary/questions_summary.dart';
-import 'package:test_1/game2/lib/start_screen.dart';
-import 'package:test_1/main.dart';
-import 'package:test_1/main_screen/main_app.dart';
 import 'package:test_1/main_screen/main_menu.dart';
 
 class ResultsScreen extends StatelessWidget {

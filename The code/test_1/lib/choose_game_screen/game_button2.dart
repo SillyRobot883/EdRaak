@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/choose_game_button.dart';
-import 'package:test_1/game2/lib/quiz.dart';
 
 class GameButton2 extends StatelessWidget {
   final ChooseGameButton chooseGameButton;  // to create different buttons for 

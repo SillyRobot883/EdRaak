@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:test_1/main.dart';
 import 'package:test_1/main_screen/main_menu.dart';
 
 class settings extends StatefulWidget {

@@ -1,13 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 import 'package:test_1/main_screen/custom_backButton.dart';
-import 'package:test_1/main_screen/main_app.dart';
 import 'package:test_1/main_screen/main_menu.dart';
-import '../game1/The_game.dart';
-import 'package:test_1/main.dart';
 
 // void main() {
 //   runApp(MyApp());

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:test_1/game2/lib/question.dart';
+
 
 class StartScreen extends StatelessWidget {
   const StartScreen(this.startQuiz, {super.key});
