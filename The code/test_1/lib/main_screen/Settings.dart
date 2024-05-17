@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:test_1/main.dart';
+import 'package:test_1/main_screen/main_menu.dart';
 
 class settings extends StatefulWidget {
   const settings({super.key});
@@ -21,7 +23,7 @@ class _settingsState extends State<settings> {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage(
-              "images/SettingsPage.jpg"), // Replace with your actual image path
+              'lib/assets/image/images/SettingsPage.jpg'), // Replace with your actual image path
           fit: BoxFit.cover,
         ),
       ),
@@ -167,9 +169,9 @@ class _settingsState extends State<settings> {
                     borderRadius: BorderRadius.circular(10)),
                 color: Colors.green,
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => MainMenu(),
-                  ));
+                  Get.offAll(() => MainMenu(),
+                      transition: Transition.upToDown,
+                      duration: Duration(milliseconds: 400));
                 },
                 child: Text(
                   'حفظ',

@@ -3,8 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_1/ResultPage.dart';
+import 'ResultPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class The_game extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: ImageMatchingGameScreen(),
       ),
@@ -85,6 +87,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
         ConfettiController(duration: const Duration(seconds: 3));
 
     loadingData();
+    restartGame();
   }
 
   void loadingData() async {
@@ -136,7 +139,6 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
           MaterialPageRoute(
             builder: (context) => ResultPage(
               score: score,
-              onRetryPressed: restartGame,
             ),
           ),
         );
@@ -156,15 +158,12 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
         currentLevel = 1;
 
         // Navigate to the result page
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ResultPage(
-              score: score,
-              onRetryPressed: restartGame,
-            ),
-          ),
-        );
+        Get.off(
+            () => ResultPage(
+                  score: score,
+                ),
+            transition: Transition.native,
+            duration: Duration(milliseconds: 300));
       }
     });
   }

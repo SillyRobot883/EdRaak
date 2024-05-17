@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:test_1/game1/The_game.dart';
 import 'package:test_1/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:confetti/confetti.dart';
+import 'package:test_1/main_screen/main_app.dart';
+import 'package:test_1/main_screen/main_menu.dart';
 
 class ResultPage extends StatefulWidget {
   final int score;
-  final VoidCallback onRetryPressed;
+  // final VoidCallback onRetryPressed;
 
-  ResultPage({required this.score, required this.onRetryPressed});
+  ResultPage({required this.score});
 
   @override
   _ResultPageState createState() => _ResultPageState();
@@ -38,7 +42,7 @@ class _ResultPageState extends State<ResultPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/ResultImage.png'),
+            image: AssetImage('lib/assets/image/images/ResultImage.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -68,8 +72,10 @@ class _ResultPageState extends State<ResultPage> {
               ElevatedButton(
                 onPressed: () {
                   // Retry button pressed, restart the game
-                  widget.onRetryPressed();
-                  Navigator.pop(context);
+                  // widget.onRetryPressed();
+                  Get.to(() => The_game(),
+                      transition: Transition.native,
+                      duration: Duration(milliseconds: 300));
                 },
                 child: Text(
                   'إعادة',
@@ -83,10 +89,9 @@ class _ResultPageState extends State<ResultPage> {
               ElevatedButton(
                 onPressed: () {
                   // Main Menu button pressed, navigate to the main menu
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainApp()),
-                  );
+                  Get.offAll(() => MainMenu(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(milliseconds: 300));
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
