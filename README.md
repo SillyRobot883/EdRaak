@@ -25,7 +25,7 @@ The goal of the EdRaak project is to develop an educational game library tailore
 
 To get started with EdRaak, follow these steps:
 
-1. Clone the repository to your local machine:
+1. Clone the EdRaak repository to your local machine:
 
    ```bash
    git clone https://github.com/SillyRobot883/EdRaak.git
