@@ -1,18 +1,16 @@
 import 'dart:math';
-
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:confetti/confetti.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'ResultPage.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:google_fonts/google_fonts.dart'; 
+import 'SoundManager.dart';  // Import your SoundManager
 
 void main() {
   runApp(The_game());
 }
-
-// ...
 
 class The_game extends StatelessWidget {
   @override
@@ -28,10 +26,6 @@ class The_game extends StatelessWidget {
     );
   }
 }
-
-@override
-
-// ...
 
 class ImageMatchingGameScreen extends StatefulWidget {
   @override
@@ -55,15 +49,13 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
       'images/Ball.png',
     ],
     ['images/Clocks.png', 'images/Clocks.png', 'images/Apple.png'],
-
     [
       'images/Egg.png',
-      'images/Battery.png', //add an image
+      'images/Battery.png',
       'images/Battery.png',
       'images/Ball.png',
-      'images/Tree.png' //add an image
+      'images/Tree.png',
     ],
-    // Add more levels as needed
   ];
 
   List<int> correctAnswers = [4, 3, 2, 1];
@@ -77,6 +69,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
   int score = 0;
 
   late ConfettiController _confettiController;
+  late SoundManager _soundManager;
 
   Color co = Colors.grey;
 
@@ -85,6 +78,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
     super.initState();
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 3));
+    _soundManager = SoundManager();
+    _soundManager.init();
 
     loadingData();
     restartGame();
@@ -119,26 +114,21 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
   void startNewLevel() {
     setState(() {
       if (currentLevel < levelsImages.length) {
-        // If there are more levels, move to the next level
         currentLevel++;
         score++;
         _confettiController.play();
+        _soundManager.playCorrectAnswer();  // Play sound when answer is correct
       } else {
-        // If the user answered the last question, check if the answer is correct
         if (correctAnswers[levelsImages.length - 1] == 1) {
-          // If the answer is correct, increase the score
           score++;
         }
-
-        // Reset the current level to 1 for the next game
         currentLevel = 1;
-
-        // Navigate to the result page
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ResultPage(
               score: score,
+             
             ),
           ),
         );
@@ -149,16 +139,10 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
   void startNewLevel_2() {
     setState(() {
       if (currentLevel < levelsImages.length) {
-        // If there are more levels, move to the next level
         currentLevel++;
       } else {
-        // If the user answered the last question, check if the answer is correct
-
-        // Reset the current level to 1 for the next game
         currentLevel = 1;
-
-        // Navigate to the result page
-        Get.off(
+       Get.off(
             () => ResultPage(
                   score: score,
                 ),
@@ -191,8 +175,9 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
                 width: 220,
                 margin: const EdgeInsets.only(right: 20),
                 decoration: BoxDecoration(
-                    color: Colors.brown[300],
-                    borderRadius: BorderRadius.circular(10)),
+                  color: Colors.brown[300],
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 child: Center(
                   child: Text(
                     Questions[currentLevel - 1],
@@ -210,7 +195,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
                 margin: const EdgeInsets.all(30),
                 height: 500,
                 child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate:
+                      const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
                   itemCount: levelsImages[currentLevel - 1].length,
@@ -261,7 +247,7 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Text(
-                'النقاط: $score',
+                               'النقاط: $score',
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
@@ -285,10 +271,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
       child: ElevatedButton(
         onPressed: () {
           if (correctAnswers[int.parse(text) - 1] == currentLevel) {
-            // If the answer is correct, increase the score
             startNewLevel();
           } else {
-            // If the answer is incorrect, move on to the next level without incrementing the score
             setState(() {
               startNewLevel_2();
             });
@@ -312,6 +296,8 @@ class _ImageMatchingGameScreenState extends State<ImageMatchingGameScreen> {
   @override
   void dispose() {
     _confettiController.dispose();
-    super.dispose();
-  }
-}
+       _soundManager.dispose();
+       super.dispose();
+     }
+   }
+   
