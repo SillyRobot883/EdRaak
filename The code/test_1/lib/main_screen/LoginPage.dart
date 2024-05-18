@@ -88,9 +88,7 @@ class _LoginPageState extends State<LoginPage> {
             left: 16.0,
             child: CustomBackButton(
               onPressed: () {
-                Get.offAll(() => MainApp(),
-                    transition: Transition.rightToLeft,
-                    duration: Duration(milliseconds: 400));
+                Get.offNamedUntil(" MainMenu ", (route) => false);
               },
             ),
           ),
