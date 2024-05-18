@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738177878309",
+    "project_id": "edraak1-2fb39",
+    "storage_bucket": "edraak1-2fb39.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738177878309:android:3adbac8151677cd550f2cc",
+        "android_client_info": {
+          "package_name": "com.example.test_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzfha8t3bkYxdMP1Tu0m8w-j5ucE7UrRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
