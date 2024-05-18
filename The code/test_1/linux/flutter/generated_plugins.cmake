@@ -3,11 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-<<<<<<< HEAD
   rive_common
-=======
-  audioplayers_linux
->>>>>>> cce4ded3429b9ef042a3ce79b07b9331ecd8126f
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

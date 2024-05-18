@@ -6,7 +6,6 @@
 
 #include "generated_plugin_registrant.h"
 
-<<<<<<< HEAD
 #include <cloud_firestore/cloud_firestore_plugin_c_api.h>
 #include <firebase_auth/firebase_auth_plugin_c_api.h>
 #include <firebase_core/firebase_core_plugin_c_api.h>
@@ -24,11 +23,4 @@ void RegisterPlugins(flutter::PluginRegistry* registry) {
       registry->GetRegistrarForPlugin("FirebaseStoragePluginCApi"));
   RivePluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("RivePlugin"));
-=======
-#include <audioplayers_windows/audioplayers_windows_plugin.h>
-
-void RegisterPlugins(flutter::PluginRegistry* registry) {
-  AudioplayersWindowsPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("AudioplayersWindowsPlugin"));
->>>>>>> cce4ded3429b9ef042a3ce79b07b9331ecd8126f
 }

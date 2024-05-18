@@ -1,15 +1,8 @@
 // This is a generated file; do not edit or check into version control.
-<<<<<<< HEAD
 FLUTTER_ROOT=C:\flutter
 FLUTTER_APPLICATION_PATH=C:\Users\nawaf\Documents\Edraak\EdRaak\The code\test_1
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib\main.dart
-=======
-FLUTTER_ROOT=/Users/development/flutter
-FLUTTER_APPLICATION_PATH=/Users/azizalsheikh/Desktop/for_git/EdRaak/The code/test_1
-COCOAPODS_PARALLEL_CODE_SIGN=true
-FLUTTER_TARGET=/Users/azizalsheikh/Desktop/for_git/EdRaak/The code/test_1/lib/main.dart
->>>>>>> cce4ded3429b9ef042a3ce79b07b9331ecd8126f
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
@@ -18,8 +11,4 @@ EXCLUDED_ARCHS[sdk=iphoneos*]=armv7
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false
-<<<<<<< HEAD
 PACKAGE_CONFIG=.dart_tool/package_config.json
-=======
-PACKAGE_CONFIG=/Users/azizalsheikh/Desktop/for_git/EdRaak/The code/test_1/.dart_tool/package_config.json
->>>>>>> cce4ded3429b9ef042a3ce79b07b9331ecd8126f

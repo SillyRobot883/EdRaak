@@ -14,9 +14,9 @@ import 'package:test_1/components/customlogoauth.dart';
 import 'package:test_1/components/textformfield.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-void main() {
-  runApp(MyApp());
-}
+// void main() {
+//   runApp(MyApp());
+// }
 
 // class MyApp extends StatelessWidget {
 //   @override
@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
             left: 16.0,
             child: CustomBackButton(
               onPressed: () {
-                Get.offAll(() => MainMenu(),
+                Get.offAll(() => MainApp(),
                     transition: Transition.rightToLeft,
                     duration: Duration(milliseconds: 400));
               },
