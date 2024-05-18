@@ -11,7 +11,7 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  final AudioManager _audioManager = AudioManager();
+  final AudioManager _audioManager = new AudioManager();
 
   @override
   void initState() {
