@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/choose_game_button.dart';
-import 'package:test_1/game2/lib/quiz.dart';
 
 class GameButton1 extends StatelessWidget {
-  final ChooseGameButton chooseGameButton;  // to create different buttons for 
-                                      // different games.
+  final ChooseGameButton chooseGameButton; // to create different buttons for
+  // different games.
   const GameButton1({
     Key? key,
     required this.chooseGameButton,
@@ -14,28 +14,25 @@ class GameButton1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => chooseGameButton.gameWidget),
-        );
+        Get.to(() => chooseGameButton.gameWidget,
+            transition: Transition.zoom, duration: Duration(milliseconds: 230));
       },
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-            Image.asset(
-              chooseGameButton.imagePath,
-              width: 100,
-              height: 100,
-            ),
-        
+          Image.asset(
+            chooseGameButton.imagePath,
+            width: 100,
+            height: 100,
+          ),
           SizedBox(
             width: 8,
           ),
           Text(
             chooseGameButton.name,
             style: GoogleFonts.amiri(
-                color:chooseGameButton.color, 
-                fontWeight: FontWeight.bold, 
+                color: chooseGameButton.color,
+                fontWeight: FontWeight.bold,
                 fontSize: 30),
           ),
         ],

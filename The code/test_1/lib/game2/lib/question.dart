@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/game2/lib/answer_button.dart';
 import 'package:test_1/game2/lib/data/questions.dart';
-import 'package:test_1/game2/lib/models/game_questions.dart';
+
 
 /*
 To recap I started in class Quiz because it is responsible for quiz screen.

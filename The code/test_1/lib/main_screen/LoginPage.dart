@@ -1,7 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 import 'package:test_1/main_screen/custom_backButton.dart';
 import 'package:test_1/main_screen/main_app.dart';
 import '../game1/The_game.dart';
@@ -16,19 +18,21 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: LoginPage(),
+//     );
+//   }
+// }
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -84,9 +88,9 @@ class _LoginPageState extends State<LoginPage> {
             left: 16.0,
             child: CustomBackButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => MainApp()),
-                );
+                Get.offAll(() => MainMenu(),
+                    transition: Transition.rightToLeft,
+                    duration: Duration(milliseconds: 400));
               },
             ),
           ),
@@ -221,9 +225,9 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 5.0),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => The_game()),
-                    );
+                    Get.off(() => GameCatalog(),
+                        transition: Transition.zoom,
+                        duration: Duration(milliseconds: 300));
                   },
                   child: Text(
                     'إلعب كـضيف',

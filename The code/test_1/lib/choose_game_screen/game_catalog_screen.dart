@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test_1/main.dart';
-import 'package:test_1/main_screen/main_app.dart';
+import 'package:get/get.dart';
+import 'package:test_1/main_screen/main_menu.dart';
 import '../../game1/The_game.dart';
 import 'package:test_1/choose_game_screen/choose_game_button.dart';
 import 'package:test_1/choose_game_screen/game_button1.dart';
@@ -50,21 +50,19 @@ class GameCatalog extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {
                     // Main Menu button pressed, navigate to the main menu
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => MainApp()),
-                    );
+                    Get.offAll(() => MainMenu(),
+                        transition: Transition.fade,
+                        duration: Duration(milliseconds: 250));
                   },
                   child: Text(
                     'الصفحة الرئيسية',
-                    style: 
-                    TextStyle(
+                    style: TextStyle(
                       color: Color.fromARGB(255, 134, 255, 138),
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                   style: OutlinedButton.styleFrom(
+                  style: OutlinedButton.styleFrom(
                     side: BorderSide(
                       color: Color.fromARGB(255, 91, 213, 95),
                     ),

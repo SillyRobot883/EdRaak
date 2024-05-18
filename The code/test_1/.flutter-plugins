@@ -1,4 +1,5 @@
 # This is a generated file; do not edit or check into version control.
+<<<<<<< HEAD
 cloud_firestore=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\cloud_firestore-4.15.8\\
 cloud_firestore_web=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\cloud_firestore_web-3.10.8\\
 firebase_auth=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_auth-4.17.8\\
@@ -25,3 +26,25 @@ shared_preferences_foundation=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\host
 shared_preferences_linux=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_linux-2.3.2\\
 shared_preferences_web=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_web-2.2.2\\
 shared_preferences_windows=C:\\Users\\nawaf\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_windows-2.3.2\\
+=======
+audio_session=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audio_session-0.1.19/
+audioplayers=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audioplayers-6.0.0/
+audioplayers_android=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audioplayers_android-5.0.0/
+audioplayers_darwin=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audioplayers_darwin-6.0.0/
+audioplayers_linux=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audioplayers_linux-4.0.0/
+audioplayers_web=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audioplayers_web-5.0.0/
+audioplayers_windows=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/audioplayers_windows-4.0.0/
+just_audio=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/just_audio-0.9.38/
+just_audio_web=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/just_audio_web-0.4.11/
+path_provider=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/path_provider-2.1.2/
+path_provider_android=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/path_provider_android-2.2.2/
+path_provider_foundation=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/path_provider_foundation-2.3.2/
+path_provider_linux=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/path_provider_linux-2.2.1/
+path_provider_windows=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/path_provider_windows-2.2.1/
+shared_preferences=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/shared_preferences-2.2.2/
+shared_preferences_android=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/shared_preferences_android-2.2.1/
+shared_preferences_foundation=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.3.5/
+shared_preferences_linux=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/shared_preferences_linux-2.3.2/
+shared_preferences_web=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/shared_preferences_web-2.3.0/
+shared_preferences_windows=/Users/azizalsheikh/.pub-cache/hosted/pub.dev/shared_preferences_windows-2.3.2/
+>>>>>>> cce4ded3429b9ef042a3ce79b07b9331ecd8126f

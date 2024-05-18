@@ -1,21 +1,17 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/game2/lib/data/questions.dart';
 import 'package:test_1/game2/lib/questions_summary/questions_summary.dart';
-import 'package:test_1/game2/lib/start_screen.dart';
-import 'package:test_1/main.dart';
-import 'package:test_1/main_screen/main_app.dart';
-
+import 'package:test_1/main_screen/main_menu.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
     super.key,
     required this.chosenAnswers,
-    required this.onRestart, 
+    required this.onRestart,
   });
-  
+
   final void Function() onRestart;
   final List<String> chosenAnswers;
 
@@ -87,10 +83,9 @@ class ResultsScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   // Main Menu button pressed, navigate to the main menu
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MainApp()),
-                  );
+                  Get.offAll(() => MainMenu(),
+                      transition: Transition.fadeIn,
+                      duration: Duration(milliseconds: 300));
                 },
                 child: Text(
                   'القائمة الرئيسية',
@@ -101,9 +96,9 @@ class ResultsScreen extends StatelessWidget {
                   ),
                 ),
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Color.fromARGB(255, 159, 43, 170), 
-                  backgroundColor: Color.fromARGB(255, 72, 35, 207), // Text color of the button
-                 
+                  foregroundColor: Color.fromARGB(255, 159, 43, 170),
+                  backgroundColor: Color.fromARGB(
+                      255, 72, 35, 207), // Text color of the button
                 ),
               ),
             ],

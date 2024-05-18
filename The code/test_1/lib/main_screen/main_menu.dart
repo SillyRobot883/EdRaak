@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 import 'package:test_1/main_screen/LoginPage.dart';
 import 'package:test_1/main_screen/Settings.dart';
-
+import 'package:get/get.dart';
 
 class MainMenu extends StatelessWidget {
   @override
@@ -26,10 +26,10 @@ class MainMenu extends StatelessWidget {
                 const SizedBox(height: 95.0),
                 ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => GameCatalog()),
-                      );
+                      Get.to(() => GameCatalog(),
+                          transition: Transition.zoom,
+                          duration: Duration(milliseconds: 300));
+
                       //make it go to the catalog page
                       // was The_game()
                     },
@@ -55,10 +55,9 @@ class MainMenu extends StatelessWidget {
                         fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
+                    Get.to(() => LoginPage(),
+                        transition: Transition.leftToRight,
+                        duration: Duration(milliseconds: 400));
                   },
                 ),
                 const SizedBox(
@@ -71,10 +70,9 @@ class MainMenu extends StatelessWidget {
                         fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => settings()),
-                    );
+                    Get.to(() => settings(),
+                        transition: Transition.downToUp,
+                        duration: Duration(milliseconds: 400));
                   },
                 ),
               ],
