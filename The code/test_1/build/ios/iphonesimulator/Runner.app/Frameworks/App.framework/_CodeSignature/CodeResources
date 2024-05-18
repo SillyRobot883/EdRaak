@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		xUiZrZai3C3PzmtlJ5Y6XXDhURM=
+		gXjVGYoqVk6+dpu/SLNXyeYARpA=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		jhqstmvP0+Oo9Ff7TxL8Nesn3FY=
+		XwBj9wFbzxKVtmEGEyIkft4iyGg=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -36,6 +36,10 @@
 		<data>
 		I/1S1I85Evwn3Vi0YgN23Sg6WRQ=
 		</data>
+		<key>flutter_assets/images/BackgroundMusic.mp3</key>
+		<data>
+		Sc3aREPkm9I53vYlvwT9pB0vBoQ=
+		</data>
 		<key>flutter_assets/images/Ball.png</key>
 		<data>
 		w/eEBukokSwBUpYrjyaRk0pusLs=
@@ -47,6 +51,10 @@
 		<key>flutter_assets/images/Clocks.png</key>
 		<data>
 		MuJFKwGMamvPqnxk/32p41gWkUw=
+		</data>
+		<key>flutter_assets/images/CorrectSound.mp4</key>
+		<data>
+		Ju77GVPCpOseuBVfzH/ulKrYVNA=
 		</data>
 		<key>flutter_assets/images/Egg.png</key>
 		<data>
@@ -90,7 +98,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		htiKsM0kQKWIsNvnExPOHl3WRCk=
+		qGozL2tBkK6N+2tlnorWjHCeS04=
 		</data>
 		<key>flutter_assets/lib/assets/image/App1Logo.png</key>
 		<data>
@@ -167,14 +175,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gThFxd32WxEGy4N3qkFGEMfAaqj1ztlLVA6aSa2KvcI=
+			sAFhGRJlrsAYunGm0Ky2+PZTS8PNbW924BR5mxrzjlg=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FQOo5GWCYImFAdLS3H0Fc6QNULK1qMXa/eiA5x/+eiI=
+			9rrxoRz4LQmC3doAq6gL2hK1kfhPVqpbXsXr1QrNIAc=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -212,6 +220,13 @@
 			VKp/vv3+jyJm9lb8wr3o6chnu+fIhpiKUQFMigsjvDQ=
 			</data>
 		</dict>
+		<key>flutter_assets/images/BackgroundMusic.mp3</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2NWY/L8z1lqd1p2eaOfFPj5uRNkqSy6g9FUhv5EHNI8=
+			</data>
+		</dict>
 		<key>flutter_assets/images/Ball.png</key>
 		<dict>
 			<key>hash2</key>
@@ -231,6 +246,13 @@
 			<key>hash2</key>
 			<data>
 			KcKmlC29vFXmczznrs3ESs/8cngzR4taOhDmM9r9x9c=
+			</data>
+		</dict>
+		<key>flutter_assets/images/CorrectSound.mp4</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			nduASz0zLFcvCUQuU0uYizvEFt4XOKCe0d+Nd8vCpDE=
 			</data>
 		</dict>
 		<key>flutter_assets/images/Egg.png</key>
@@ -307,7 +329,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4FA1zgfpjKEObnX6PB+qa2GM3CHmnG/5zgul96DVKq4=
+			FwmVBz4l9Qsw4W2r2pI/bhA2J2Dtpzryd17werYfras=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/assets/image/App1Logo.png</key>

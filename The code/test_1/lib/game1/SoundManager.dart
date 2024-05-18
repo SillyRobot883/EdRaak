@@ -1,7 +1,7 @@
 import 'package:just_audio/just_audio.dart';
 
 class SoundManager {
-  final AudioPlayer _correctAnswerPlayer = AudioPlayer();
+  final AudioPlayer _correctAnswerPlayer = new AudioPlayer();
 
   Future<void> init() async {
     await _correctAnswerPlayer.setAsset('images/CorrectSound.mp4');

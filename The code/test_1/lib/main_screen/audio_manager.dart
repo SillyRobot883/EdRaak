@@ -1,7 +1,7 @@
 import 'package:just_audio/just_audio.dart';
 
 class AudioManager {
-  final AudioPlayer _audioPlayer = AudioPlayer();
+  final AudioPlayer _audioPlayer = new AudioPlayer();
 
   Future<void> init() async {
     await _audioPlayer.setLoopMode(LoopMode.one);  // Loop the single track
