@@ -5,7 +5,9 @@ import 'package:test_1/components/custombuttonauth.dart';
 import 'package:test_1/components/customlogoauth.dart';
 import 'package:test_1/components/textformfield.dart';
 import 'package:test_1/main.dart';
+import 'package:test_1/main_screen/LoginPage.dart';
 import 'package:test_1/main_screen/main_menu.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -33,54 +35,55 @@ class _SignUpState extends State<SignUp> {
         padding: const EdgeInsets.all(20),
         child: ListView(children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(height: 50),
               const CustomLogoAuth(),
               Container(height: 20),
-              const Text("SignUp",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+              Text(
+                'التسجيل',
+                style: GoogleFonts.tajawal(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Container(height: 20),
+              Text(
+                'اسم المستخدم',
+                style: GoogleFonts.tajawal(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Container(height: 10),
-              const Text("SignUp To Continue Using The App",
-                  style: TextStyle(color: Colors.grey)),
+              CustomTextForm(
+                hinttext: "ادخل اسم المستخدم",
+                mycontroller: username,
+              ),
               Container(height: 20),
               const Text(
-                "username",
+                "البريد الالكتروني",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Container(height: 10),
               CustomTextForm(
-                  hinttext: "ُEnter Your username", mycontroller: username),
-              Container(height: 20),
-              const Text(
-                "Email",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-              Container(height: 10),
-              CustomTextForm(
-                  hinttext: "ُEnter Your Email", mycontroller: email),
+                  hinttext: "ُادخل بريدك الالكتروني", mycontroller: email),
               Container(height: 10),
               const Text(
-                "Password",
+                "كلمة السر",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               Container(height: 10),
               CustomTextForm(
-                  hinttext: "ُEnter Your Password", mycontroller: password),
+                  hinttext: "ُادخل كلمة السر", mycontroller: password),
               Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 20),
                 alignment: Alignment.topRight,
-                child: const Text(
-                  "Forgot Password ?",
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
               ),
             ],
           ),
           CustomButtonAuth(
-              title: "SignUp",
+              title: "تسجيل",
               onPressed: () async {
                 try {
                   final credential = await FirebaseAuth.instance
@@ -114,23 +117,30 @@ class _SignUpState extends State<SignUp> {
                   print(e);
                 }
               }),
-          Container(height: 20),
 
           Container(height: 20),
           // Text("Don't Have An Account ? Resister" , textAlign: TextAlign.center,)
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed("login");
+              Navigator.of(context).pop();
             },
-            child: const Center(
+            child: Center(
               child: Text.rich(TextSpan(children: [
                 TextSpan(
-                  text: "Have An Account ? ",
+                  text: "عندك حساب بالفعل؟ ",
+                  style: GoogleFonts.tajawal(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 TextSpan(
-                    text: "Login",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold)),
+                  text: "سجل الدخول",
+                  style: GoogleFonts.tajawal(
+                    color: Colors.blue,
+                    fontSize: 17.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ])),
             ),
           )

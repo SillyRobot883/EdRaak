@@ -212,13 +212,14 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 10),
                       Container(
-                        width: 260,
+                        width: 300,
                         child: ElevatedButton(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            textDirection: TextDirection.rtl,
                             children: [
                               Text(
-                                'Login with Google',
+                                'سجل الدخول مع قوقل',
                                 style: GoogleFonts.tajawal(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold),
@@ -260,14 +261,23 @@ class _LoginPageState extends State<LoginPage> {
                             MaterialPageRoute(builder: (context) => SignUp()),
                           );
                         },
-                        child: const Center(
+                        child: Center(
                             child: Text.rich(TextSpan(children: [
-                          TextSpan(text: "Don't have an Account ?"),
                           TextSpan(
-                              text: " Regsister",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold))
+                            text: "ما عندك حساب ؟ ",
+                            style: GoogleFonts.tajawal(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          TextSpan(
+                            text: " سجل الان",
+                            style: GoogleFonts.tajawal(
+                              color: Colors.blue,
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                         ]))),
                       ),
                       InkWell(
@@ -277,7 +287,7 @@ class _LoginPageState extends State<LoginPage> {
                               context: context,
                               dialogType: DialogType.info,
                               animType: AnimType.rightSlide,
-                              title: 'Error',
+                              title: 'خطأ',
                               desc:
                                   'الرجاء كتابة البريد الاكتروني في حقل المستخدم',
                             ).show();
@@ -305,14 +315,23 @@ class _LoginPageState extends State<LoginPage> {
                             ).show();
                           }
                         },
-                        child: const Center(
+                        child: Center(
                             child: Text.rich(TextSpan(children: [
-                          TextSpan(text: "Forget the  "),
                           TextSpan(
-                              text: "password ?",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold))
+                            text: "نسيت  ",
+                            style: GoogleFonts.tajawal(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          TextSpan(
+                            text: "كلمة السر ؟",
+                            style: GoogleFonts.tajawal(
+                              color: Colors.blue,
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
                         ]))),
                       )
                     ],

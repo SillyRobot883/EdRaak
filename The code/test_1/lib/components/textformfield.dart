@@ -9,21 +9,24 @@ class CustomTextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: mycontroller,
-      decoration: InputDecoration(
-          hintText: hinttext,
-          hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
-          contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 20),
-          filled: true,
-          fillColor: Colors.grey[200],
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide:
-                  BorderSide(color: const Color.fromARGB(255, 184, 184, 184))),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide(color: Colors.grey))),
+    return Container(
+      child: TextFormField(
+        controller: mycontroller,
+        decoration: InputDecoration(
+            hintTextDirection: TextDirection.rtl,
+            hintText: hinttext,
+            hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
+            contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 20),
+            filled: true,
+            fillColor: Colors.grey[200],
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+                borderSide: BorderSide(
+                    color: const Color.fromARGB(255, 184, 184, 184))),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: Colors.grey))),
+      ),
     );
   }
 }
