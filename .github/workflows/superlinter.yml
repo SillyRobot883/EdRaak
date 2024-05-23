@@ -7,47 +7,54 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.19.5'
-        channel: 'stable'
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.19.5'
+          channel: 'stable'
 
-    - name: Verify Flutter setup
-      run: flutter --version
+      - name: Print current directory
+        run: pwd
 
-    - name: Run Super Linter
-      uses: github/super-linter@v4
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        VALIDATE_ALL_CODEBASE: false
-        VALIDATE_DART: true
-        DEFAULT_BRANCH: main
+      - name: List root directory contents
+        run: ls -al
 
-    - name: Install dependencies
-      run: flutter pub get
+      - name: Verify Flutter setup
+        run: flutter --version
 
-    - name: Run tests
-      run: |
-        flutter test --machine > test-results/output.json
-      continue-on-error: true
+      - name: Debugging: List all directories
+        run: |
+          echo "Listing all directories"
+          find . -type d
 
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: test-results/output.json
+      - name: Install dependencies
+        run: flutter pub get
+        working-directory: ./
 
-    - name: Build APK
-      run: flutter build apk --release
+      - name: Run tests
+        run: |
+          flutter test --machine > test-results/output.json
+        continue-on-error: true
+        working-directory: ./
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v2
-      with:
-        name: apk
-        path: build/app/outputs/flutter-apk/app-release.apk
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: test-results/output.json
+        working-directory: ./
+
+      - name: Build APK
+        run: flutter build apk --release
+        working-directory: ./
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: apk
+          path: build/app/outputs/flutter-apk/app-release.apk
         working-directory: ./
