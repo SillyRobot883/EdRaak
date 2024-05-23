@@ -49,7 +49,7 @@ jobs:
       - name: Find APK Path
         id: find-apk
         run: |
-          APK_PATH=$(find ${{ env.PROJECT_DIR }}/build/app/outputs/flutter-apk/ -name "*.apk" | head -n 1)
+          APK_PATH=$(find "${{ env.PROJECT_DIR }}/build/app/outputs/flutter-apk/" -name "*.apk" | head -n 1)
           if [ -z "$APK_PATH" ]; then
             echo "No APK found!"
             exit 1
