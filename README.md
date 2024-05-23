@@ -89,7 +89,7 @@ We chose Flutter, which uses the Dart programming language, for developing EdRaa
 - **Confetti Animation:**
   - We use the [Confetti](https://pub.dev/packages/confetti) package for fun visual effects.
 - **Custom Fonts (Google fonts):**
-  - The Tajawal font, lalezar, Amiri, and many more. From the [Google Fonts](https://pub.dev/packages/google_fonts) package.
+  - The Tajawal, lalezar, Amiri, and many more fonts. From the [Google Fonts](https://pub.dev/packages/google_fonts) package.
 - **Background Music and Sounds:**
   - Audio is powered by the [just_audio](https://pub.dev/packages/just_audio) package.
 - **Navigation:**
