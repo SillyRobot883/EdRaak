@@ -50,3 +50,4 @@ jobs:
       with:
         name: apk
         path: build/app/outputs/flutter-apk/app-release.apk
+        working-directory: ./
