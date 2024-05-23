@@ -32,17 +32,9 @@ jobs:
         working-directory: ${{ env.PROJECT_DIR }}
 
       - name: Run tests
-        run: |
-          flutter test --machine > test-results/output.json
-        continue-on-error: true
+        run: flutter test
         working-directory: ${{ env.PROJECT_DIR }}
-
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results
-          path: ${{ env.PROJECT_DIR }}/test-results/output.json
+        continue-on-error: true
 
       - name: Build APK
         run: flutter build apk --release
