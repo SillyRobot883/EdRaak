@@ -16,45 +16,47 @@ jobs:
           flutter-version: '3.19.5'
           channel: 'stable'
 
-      - name: Print current directory
-        run: pwd
-
-      - name: List root directory contents
-        run: ls -al
-
       - name: Verify Flutter setup
         run: flutter --version
 
-      - name: Debugging: List all directories
+      - name: Find and Set Project Directory
+        id: set-directory
         run: |
-          echo "Listing all directories"
-          find . -type d
+          echo "Finding pubspec.yaml..."
+          PROJECT_DIR=$(find . -name pubspec.yaml -exec dirname {} \;)
+          echo "Found project directory: $PROJECT_DIR"
+          echo "PROJECT_DIR=$PROJECT_DIR" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: flutter pub get
-        working-directory: ./
+        working-directory: ${{ env.PROJECT_DIR }}
 
       - name: Run tests
         run: |
           flutter test --machine > test-results/output.json
         continue-on-error: true
-        working-directory: ./
+        working-directory: ${{ env.PROJECT_DIR }}
 
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v2
         with:
           name: test-results
-          path: test-results/output.json
-        working-directory: ./
+          path: ${{ env.PROJECT_DIR }}/test-results/output.json
 
       - name: Build APK
         run: flutter build apk --release
-        working-directory: ./
+        working-directory: ${{ env.PROJECT_DIR }}
+
+      - name: Find APK Path
+        id: find-apk
+        run: |
+          APK_PATH=$(find ${{ env.PROJECT_DIR }}/build/app/outputs/flutter-apk/ -name "*.apk" | head -n 1)
+          echo "APK_PATH=$APK_PATH" >> $GITHUB_ENV
+          echo "Found APK at $APK_PATH"
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
           name: apk
-          path: build/app/outputs/flutter-apk/app-release.apk
-        working-directory: ./
+          path: ${{ env.APK_PATH }}
