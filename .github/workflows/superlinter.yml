@@ -16,9 +16,13 @@ jobs:
         flutter-version: '3.19.5'
         channel: 'stable'
 
+    - name: Verify Flutter setup
+      run: flutter --version
+
     - name: Run Super Linter
       uses: github/super-linter@v4
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         VALIDATE_ALL_CODEBASE: false
         VALIDATE_DART: true
         DEFAULT_BRANCH: main
