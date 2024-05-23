@@ -31,8 +31,14 @@ jobs:
         run: flutter pub get
         working-directory: ${{ env.PROJECT_DIR }}
 
-      - name: Run tests
-        run: flutter test
+      - name: Check for test directory and run tests
+        run: |
+          if [ -d "${{ env.PROJECT_DIR }}/test" ]; then
+            echo "Running tests in the test directory..."
+            flutter test
+          else
+            echo "No test directory found. Skipping tests."
+          fi
         working-directory: ${{ env.PROJECT_DIR }}
         continue-on-error: true
 
@@ -44,6 +50,10 @@ jobs:
         id: find-apk
         run: |
           APK_PATH=$(find ${{ env.PROJECT_DIR }}/build/app/outputs/flutter-apk/ -name "*.apk" | head -n 1)
+          if [ -z "$APK_PATH" ]; then
+            echo "No APK found!"
+            exit 1
+          fi
           echo "APK_PATH=$APK_PATH" >> $GITHUB_ENV
           echo "Found APK at $APK_PATH"
 
