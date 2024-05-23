@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
@@ -48,18 +49,20 @@ class MainMenu extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                ElevatedButton(
-                  child: Text(
-                    'تسجيل دخول',
-                    style: GoogleFonts.tajawal(
-                        fontSize: 16.0, fontWeight: FontWeight.bold),
-                  ),
-                  onPressed: () {
-                    Get.to(() => LoginPage(),
-                        transition: Transition.leftToRight,
-                        duration: Duration(milliseconds: 400));
-                  },
-                ),
+                FirebaseAuth.instance.currentUser == null
+                    ? ElevatedButton(
+                        child: Text(
+                          'تسجيل دخول',
+                          style: GoogleFonts.tajawal(
+                              fontSize: 16.0, fontWeight: FontWeight.bold),
+                        ),
+                        onPressed: () {
+                          Get.to(() => LoginPage(),
+                              transition: Transition.leftToRight,
+                              duration: Duration(milliseconds: 400));
+                        },
+                      )
+                    : SizedBox(),
                 const SizedBox(
                   height: 5,
                 ),

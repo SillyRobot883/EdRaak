@@ -11,13 +11,14 @@ class CustomBackButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white, // Semi-transparent background
+          color: Colors.grey[100], // Semi-transparent background
           borderRadius: BorderRadius.circular(25), // Rounded corners
+          border: Border.all(color: Colors.deepPurple, width: 2), // Gray border
         ),
         padding: EdgeInsets.all(8), // Padding for the icon
         child: Icon(
           Icons.arrow_back,
-          color: const Color.fromARGB(255, 190, 190, 190),
+          color: Colors.deepPurple,
           size: 24, // Icon size
         ),
       ),

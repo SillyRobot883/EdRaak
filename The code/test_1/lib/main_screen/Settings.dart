@@ -20,185 +20,226 @@ class _settingsState extends State<settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                onPressed: () async {
-                  GoogleSignIn googleSignIn = GoogleSignIn();
-                  googleSignIn.disconnect();
-                  await FirebaseAuth.instance.signOut();
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
+        // appBar: AppBar(
+        // actions: [
+        //   IconButton(
+        // onPressed: () async {
+        //   GoogleSignIn googleSignIn = GoogleSignIn();
+        //   googleSignIn.disconnect();
+        //   await FirebaseAuth.instance.signOut();
+        //   Navigator.of(context)
+        //       .pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
+        // },
+        //       icon: Icon(Icons.exit_to_app))
+        // ],
+        // ),
+        body: Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+              'lib/assets/image/images/SettingsPage.jpg'), // Replace with your actual image path
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        margin: const EdgeInsets.only(top: 200),
+        child: Column(
+          children: [
+            Center(
+                child: Text(
+              'الإعدادات',
+              style: GoogleFonts.tajawal(
+                fontSize: 50.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            )),
+            const SizedBox(
+              height: 70,
+            ),
+            Center(
+                child: Text(
+              'اختر لون صناديق الإجابه',
+              style: GoogleFonts.tajawal(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            )),
+            SizedBox(
+                height: 200,
+                width: 280,
+                child: GridView(
+                  padding: const EdgeInsets.only(top: 10),
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    mainAxisExtent: 30,
+                  ),
+                  children: [
+                    MaterialButton(
+                      onPressed: () async {
+                        SharedPreferences pref =
+                            await SharedPreferences.getInstance();
+                        pref.setString("color", "amber");
+                        final snackBar = SnackBar(
+                          /// need to set following properties for best effect of awesome_snackbar_content
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'تم إختيار اللون',
+                            message: '',
+                            contentType: ContentType.success,
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
+                      },
+                      color: Colors.amber,
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        SharedPreferences pref =
+                            await SharedPreferences.getInstance();
+                        pref.setString("color", "white");
+                        final snackBar = SnackBar(
+                          /// need to set following properties for best effect of awesome_snackbar_content
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'تم إختيار اللون',
+                            message: '',
+                            contentType: ContentType.success,
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
+                      },
+                      color: Colors.white,
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        SharedPreferences pref =
+                            await SharedPreferences.getInstance();
+                        pref.setString("color", "blue");
+                        final snackBar = SnackBar(
+                          /// need to set following properties for best effect of awesome_snackbar_content
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'تم إختيار اللون',
+                            message: '',
+                            contentType: ContentType.success,
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
+                      },
+                      color: Colors.blue,
+                    ),
+                    MaterialButton(
+                      onPressed: () async {
+                        SharedPreferences pref =
+                            await SharedPreferences.getInstance();
+                        pref.setString("color", "grey");
+                        final snackBar = SnackBar(
+                          /// need to set following properties for best effect of awesome_snackbar_content
+                          elevation: 0,
+                          behavior: SnackBarBehavior.floating,
+                          backgroundColor: Colors.transparent,
+                          content: AwesomeSnackbarContent(
+                            title: 'تم إختيار اللون',
+                            message: '',
+                            contentType: ContentType.success,
+                          ),
+                        );
+
+                        ScaffoldMessenger.of(context)
+                          ..hideCurrentSnackBar()
+                          ..showSnackBar(snackBar);
+                      },
+                      color: Colors.grey,
+                    ),
+                  ],
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            MaterialButton(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                color: Colors.green,
+                onPressed: () {
+                  Get.offAll(() => MainMenu(),
+                      transition: Transition.upToDown,
+                      duration: Duration(milliseconds: 400));
                 },
-                icon: Icon(Icons.exit_to_app))
+                child: Text(
+                  'حفظ',
+                  style: GoogleFonts.tajawal(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            FirebaseAuth.instance.currentUser == null
+                ? SizedBox()
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.deepOrange[600]),
+                    child: Text(
+                      FirebaseAuth.instance.currentUser!.email == null
+                          ? 'تسجيل خروج'
+                          : '${FirebaseAuth.instance.currentUser!.email} تسجيل خروج من ',
+                      style: GoogleFonts.tajawal(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white70),
+                    ),
+                    onPressed: () async {
+                      GoogleSignIn googleSignIn = GoogleSignIn();
+                      googleSignIn.disconnect();
+                      await FirebaseAuth.instance.signOut();
+
+                      final snackBar = SnackBar(
+                        /// need to set following properties for best effect of awesome_snackbar_content
+                        elevation: 0,
+                        behavior: SnackBarBehavior.floating,
+                        backgroundColor: Colors.transparent,
+                        content: AwesomeSnackbarContent(
+                          title: 'تم تسجيل الخروج بنجاح',
+                          message: '',
+                          contentType: ContentType.success,
+                        ),
+                      );
+
+                      ScaffoldMessenger.of(context)
+                        ..hideCurrentSnackBar()
+                        ..showSnackBar(snackBar);
+
+                      Navigator.of(context).pushNamedAndRemoveUntil(
+                          " MainMenu ", (route) => false);
+                    },
+                  ),
           ],
         ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                  'lib/assets/image/images/SettingsPage.jpg'), // Replace with your actual image path
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Container(
-            margin: const EdgeInsets.only(top: 200),
-            child: Column(
-              children: [
-                Center(
-                    child: Text(
-                  'الإعدادات',
-                  style: GoogleFonts.tajawal(
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                )),
-                const SizedBox(
-                  height: 70,
-                ),
-                Center(
-                    child: Text(
-                  'اختر لون صناديق الإجابه',
-                  style: GoogleFonts.tajawal(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                )),
-                SizedBox(
-                    height: 200,
-                    width: 280,
-                    child: GridView(
-                      padding: const EdgeInsets.only(top: 10),
-                      shrinkWrap: true,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        mainAxisExtent: 30,
-                      ),
-                      children: [
-                        MaterialButton(
-                          onPressed: () async {
-                            SharedPreferences pref =
-                                await SharedPreferences.getInstance();
-                            pref.setString("color", "amber");
-                            final snackBar = SnackBar(
-                              /// need to set following properties for best effect of awesome_snackbar_content
-                              elevation: 0,
-                              behavior: SnackBarBehavior.floating,
-                              backgroundColor: Colors.transparent,
-                              content: AwesomeSnackbarContent(
-                                title: 'تم إختيار اللون',
-                                message: '',
-                                contentType: ContentType.success,
-                              ),
-                            );
-
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(snackBar);
-                          },
-                          color: Colors.amber,
-                        ),
-                        MaterialButton(
-                          onPressed: () async {
-                            SharedPreferences pref =
-                                await SharedPreferences.getInstance();
-                            pref.setString("color", "white");
-                            final snackBar = SnackBar(
-                              /// need to set following properties for best effect of awesome_snackbar_content
-                              elevation: 0,
-                              behavior: SnackBarBehavior.floating,
-                              backgroundColor: Colors.transparent,
-                              content: AwesomeSnackbarContent(
-                                title: 'تم إختيار اللون',
-                                message: '',
-                                contentType: ContentType.success,
-                              ),
-                            );
-
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(snackBar);
-                          },
-                          color: Colors.white,
-                        ),
-                        MaterialButton(
-                          onPressed: () async {
-                            SharedPreferences pref =
-                                await SharedPreferences.getInstance();
-                            pref.setString("color", "blue");
-                            final snackBar = SnackBar(
-                              /// need to set following properties for best effect of awesome_snackbar_content
-                              elevation: 0,
-                              behavior: SnackBarBehavior.floating,
-                              backgroundColor: Colors.transparent,
-                              content: AwesomeSnackbarContent(
-                                title: 'تم إختيار اللون',
-                                message: '',
-                                contentType: ContentType.success,
-                              ),
-                            );
-
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(snackBar);
-                          },
-                          color: Colors.blue,
-                        ),
-                        MaterialButton(
-                          onPressed: () async {
-                            SharedPreferences pref =
-                                await SharedPreferences.getInstance();
-                            pref.setString("color", "grey");
-                            final snackBar = SnackBar(
-                              /// need to set following properties for best effect of awesome_snackbar_content
-                              elevation: 0,
-                              behavior: SnackBarBehavior.floating,
-                              backgroundColor: Colors.transparent,
-                              content: AwesomeSnackbarContent(
-                                title: 'تم إختيار اللون',
-                                message: '',
-                                contentType: ContentType.success,
-                              ),
-                            );
-
-                            ScaffoldMessenger.of(context)
-                              ..hideCurrentSnackBar()
-                              ..showSnackBar(snackBar);
-                          },
-                          color: Colors.grey,
-                        ),
-                      ],
-                    )),
-                const SizedBox(
-                  height: 75,
-                ),
-                MaterialButton(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 10),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    color: Colors.green,
-                    onPressed: () {
-                      Get.offAll(() => MainMenu(),
-                          transition: Transition.upToDown,
-                          duration: Duration(milliseconds: 400));
-                    },
-                    child: Text(
-                      'حفظ',
-                      style: GoogleFonts.tajawal(
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ))
-              ],
-            ),
-          ),
-        ));
+      ),
+    ));
   }
 }
