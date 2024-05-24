@@ -10,7 +10,9 @@ import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MainApp());
+
 }
