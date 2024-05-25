@@ -61,21 +61,27 @@ class _SignUpState extends State<SignUp> {
                 mycontroller: username,
               ),
               Container(height: 20),
-              const Text(
+              Text(
                 "البريد الالكتروني",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: GoogleFonts.tajawal(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Container(height: 10),
               CustomTextForm(
-                  hinttext: "ُادخل بريدك الالكتروني", mycontroller: email),
-              Container(height: 10),
-              const Text(
+                  hinttext: "ادخل بريدك الالكتروني", mycontroller: email),
+              Container(height: 20),
+              Text(
                 "كلمة السر",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: GoogleFonts.tajawal(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Container(height: 10),
               CustomTextForm(
-                  hinttext: "ُادخل كلمة السر", mycontroller: password),
+                  hinttext: "ادخل كلمة السر", mycontroller: password),
               Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 20),
                 alignment: Alignment.topRight,
