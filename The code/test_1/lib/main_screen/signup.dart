@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_1/components/custombuttonauth.dart';
@@ -97,7 +98,21 @@ class _SignUpState extends State<SignUp> {
                     email: email.text,
                     password: password.text,
                   );
+                  final snackBar = SnackBar(
+                    /// need to set following properties for best effect of awesome_snackbar_content
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    content: AwesomeSnackbarContent(
+                      title: 'تم التسجيل بنجاح',
+                      message: '',
+                      contentType: ContentType.success,
+                    ),
+                  );
 
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(snackBar);
                   Navigator.of(context).pushReplacementNamed("login");
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {

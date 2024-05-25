@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,6 +66,23 @@ class _LoginPageState extends State<LoginPage> {
 
     // Once signed in, return the UserCredential
     await FirebaseAuth.instance.signInWithCredential(credential);
+
+    final snackBar = SnackBar(
+      /// need to set following properties for best effect of awesome_snackbar_content
+      elevation: 0,
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.transparent,
+      content: AwesomeSnackbarContent(
+        title: 'تم تسجيل الدخول بنجاح',
+        message: '',
+        contentType: ContentType.success,
+      ),
+    );
+
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(snackBar);
+
     Navigator.of(context)
         .pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
   }
@@ -173,6 +191,22 @@ class _LoginPageState extends State<LoginPage> {
                                     email: _usernameController.text,
                                     password: _passwordController.text);
                             if (credential.user!.emailVerified) {
+                              final snackBar = SnackBar(
+                                /// need to set following properties for best effect of awesome_snackbar_content
+                                elevation: 0,
+                                behavior: SnackBarBehavior.floating,
+                                backgroundColor: Colors.transparent,
+                                content: AwesomeSnackbarContent(
+                                  title: 'تم تسجيل الدخول بنجاح',
+                                  message: '',
+                                  contentType: ContentType.success,
+                                ),
+                              );
+
+                              ScaffoldMessenger.of(context)
+                                ..hideCurrentSnackBar()
+                                ..showSnackBar(snackBar);
+
                               Navigator.of(context)
                                   .pushReplacementNamed(" MainMenu ");
                             } else {
