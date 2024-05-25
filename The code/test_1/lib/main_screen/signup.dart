@@ -1,4 +1,5 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:test_1/components/custombuttonauth.dart';
@@ -61,21 +62,27 @@ class _SignUpState extends State<SignUp> {
                 mycontroller: username,
               ),
               Container(height: 20),
-              const Text(
+              Text(
                 "البريد الالكتروني",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: GoogleFonts.tajawal(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Container(height: 10),
               CustomTextForm(
-                  hinttext: "ُادخل بريدك الالكتروني", mycontroller: email),
-              Container(height: 10),
-              const Text(
+                  hinttext: "ادخل بريدك الالكتروني", mycontroller: email),
+              Container(height: 20),
+              Text(
                 "كلمة السر",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: GoogleFonts.tajawal(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Container(height: 10),
               CustomTextForm(
-                  hinttext: "ُادخل كلمة السر", mycontroller: password),
+                  hinttext: "ادخل كلمة السر", mycontroller: password),
               Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 20),
                 alignment: Alignment.topRight,
@@ -91,7 +98,21 @@ class _SignUpState extends State<SignUp> {
                     email: email.text,
                     password: password.text,
                   );
+                  final snackBar = SnackBar(
+                    /// need to set following properties for best effect of awesome_snackbar_content
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    content: AwesomeSnackbarContent(
+                      title: 'تم التسجيل بنجاح',
+                      message: '',
+                      contentType: ContentType.success,
+                    ),
+                  );
 
+                  ScaffoldMessenger.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(snackBar);
                   Navigator.of(context).pushReplacementNamed("login");
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'weak-password') {
