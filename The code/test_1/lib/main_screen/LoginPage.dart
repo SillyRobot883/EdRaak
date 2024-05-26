@@ -6,13 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 import 'package:test_1/main_screen/custom_backButton.dart';
-import 'package:test_1/main_screen/main_app.dart';
-import '../game1/The_game.dart';
 import 'package:test_1/main_screen/signup.dart';
-import 'package:test_1/main.dart';
-import 'package:test_1/components/custombuttonauth.dart';
-import 'package:test_1/components/customlogoauth.dart';
-import 'package:test_1/components/textformfield.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginPage extends StatefulWidget {

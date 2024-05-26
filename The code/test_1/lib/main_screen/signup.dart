@@ -5,9 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:test_1/components/custombuttonauth.dart';
 import 'package:test_1/components/customlogoauth.dart';
 import 'package:test_1/components/textformfield.dart';
-import 'package:test_1/main.dart';
-import 'package:test_1/main_screen/LoginPage.dart';
-import 'package:test_1/main_screen/main_menu.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatefulWidget {

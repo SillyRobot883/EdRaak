@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:test_1/game1/The_game.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:confetti/confetti.dart';
+import 'package:test_1/game1/The_game.dart';
 import 'package:test_1/main_screen/main_menu.dart';
 
 class ResultPage extends StatefulWidget {
   final int score;
-  // final VoidCallback onRetryPressed;
 
   ResultPage({required this.score});
 
@@ -21,7 +19,7 @@ class _ResultPageState extends State<ResultPage> {
   @override
   void initState() {
     super.initState();
-    _confettiController = ConfettiController();
+    _confettiController = ConfettiController(duration: const Duration(seconds: 1));
     if (widget.score == 4) {
       _startConfetti();
     }
@@ -29,9 +27,6 @@ class _ResultPageState extends State<ResultPage> {
 
   void _startConfetti() {
     _confettiController.play();
-    Future.delayed(const Duration(seconds: 3), () {
-      _confettiController.stop();
-    });
   }
 
   @override
@@ -48,76 +43,77 @@ class _ResultPageState extends State<ResultPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ConfettiWidget(
-                confettiController: _confettiController,
-                blastDirectionality: BlastDirectionality.explosive,
-                shouldLoop: false,
-                colors: const [
-                  Colors.blue,
-                  Colors.pink,
-                  Colors.purple
-                ], // Changing the color of the confetti
-              ),
-              Text(
-                'نقاطك: ${widget.score}',
-                style: GoogleFonts.tajawal(
-                  fontSize: 24.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 60.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Retry button pressed, restart the game
-                  // widget.onRetryPressed();
-                  Get.to(() => The_game(),
-                      transition: Transition.native,
-                      duration: Duration(milliseconds: 300));
-                },
-                child: Text(
-                  'إعادة',
-                  style: GoogleFonts.tajawal(
-                    fontSize: 27.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  // Main Menu button pressed, navigate to the main menu
-                  Get.offAll(() => MainMenu(),
-                      transition: Transition.fadeIn,
-                      duration: Duration(milliseconds: 300));
-                },
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Colors.blue,
-                  minimumSize: const Size(224, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                child: Text(
-                  'الصفحة الرئيسية',
-                  style: GoogleFonts.tajawal(
-                    fontSize: 27.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+              ConfettiWidget(            confettiController: _confettiController,
+            blastDirectionality: BlastDirectionality.explosive,
+            shouldLoop: false,
+            colors: const [
+              Colors.blue,
+              Colors.pink,
+              Colors.purple
+            ], // Changing the color of the confetti
           ),
-        ),
+          Text(
+            'نقاطك: ${widget.score}',
+            style: GoogleFonts.tajawal(
+              fontSize: 24.0,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 60.0),
+          ElevatedButton(
+            onPressed: () {
+              // Restart the game
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => The_game()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            child: Text(
+              'إعادة',
+              style: GoogleFonts.tajawal(
+                fontSize: 27.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10.0),
+          ElevatedButton(
+            onPressed: () {
+              // Navigate to the main menu
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => MainMenu()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              foregroundColor: Colors.white,
+              backgroundColor: Colors.blue,
+              minimumSize: const Size(224, 50),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            child: Text(
+              'الصفحة الرئيسية',
+              style: GoogleFonts.tajawal(
+                fontSize: 27.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
-    );
-  }
-
-  @override
-  void dispose() {
-    _confettiController.dispose();
-    super.dispose();
-  }
+    ),
+  ),
+);
 }
+@override
+void dispose() {
+  _confettiController.dispose();
+  super.dispose();
+}
+} 
