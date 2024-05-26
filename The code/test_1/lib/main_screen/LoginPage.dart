@@ -15,20 +15,6 @@ import 'package:test_1/components/customlogoauth.dart';
 import 'package:test_1/components/textformfield.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: LoginPage(),
-//     );
-//   }
-// }
-
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -102,15 +88,6 @@ class _LoginPageState extends State<LoginPage> {
           child: SingleChildScrollView(
             child: Stack(
               children: [
-                // Container(
-                //   decoration: const BoxDecoration(
-                //     image: DecorationImage(
-                //       image: AssetImage(
-                //           'lib/assets/image/images/Login_Page_Background.png'),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
                 Positioned(
                   top: 65.0,
                   left: 16.0,
@@ -216,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                                 context: context,
                                 dialogType: DialogType.info,
                                 animType: AnimType.rightSlide,
-                                title: 'Error',
+                                title: 'توثيق البريد الالكتروني',
                                 desc:
                                     'الرجاء التوجه الى البريد الاكتروني للتحقق',
                               ).show();
@@ -228,8 +205,9 @@ class _LoginPageState extends State<LoginPage> {
                                 context: context,
                                 dialogType: DialogType.error,
                                 animType: AnimType.rightSlide,
-                                title: 'Error',
-                                desc: 'No user found for that email.',
+                                title: 'خطأ',
+                                desc:
+                                    'لا يوجد حساب مسجل بهذا البريد الالكتروني',
                               ).show();
                             } else if (e.code == 'wrong-password') {
                               print('Wrong password provided for that user.');
@@ -237,8 +215,8 @@ class _LoginPageState extends State<LoginPage> {
                                 context: context,
                                 dialogType: DialogType.error,
                                 animType: AnimType.rightSlide,
-                                title: 'Error',
-                                desc: 'Wrong password provided for that user.',
+                                title: 'خطأ',
+                                desc: 'كلمة السر خاطئة',
                               ).show();
                             }
                           }
@@ -284,10 +262,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Container(height: 10),
-                      // Text(
-                      //   "Don't have an Account ? Regsister",
-                      //   textAlign: TextAlign.center,
-                      // )
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -334,7 +308,7 @@ class _LoginPageState extends State<LoginPage> {
                               context: context,
                               dialogType: DialogType.success,
                               animType: AnimType.rightSlide,
-                              title: 'Password reset sent',
+                              title: 'إعادة تعيين كلمة المرور',
                               desc:
                                   'لقد تم ارسال على بريدك الالكتروني تعين كلمة مرور جديدة',
                             ).show();
@@ -344,7 +318,7 @@ class _LoginPageState extends State<LoginPage> {
                               context: context,
                               dialogType: DialogType.error,
                               animType: AnimType.rightSlide,
-                              title: 'Error',
+                              title: 'خطأ',
                               desc: 'الرجاء التأكد من صحة البريد المدخل',
                             ).show();
                           }
