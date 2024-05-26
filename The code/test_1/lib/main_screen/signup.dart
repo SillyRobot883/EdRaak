@@ -121,8 +121,8 @@ class _SignUpState extends State<SignUp> {
                       context: context,
                       dialogType: DialogType.error,
                       animType: AnimType.rightSlide,
-                      title: 'Error',
-                      desc: 'The password provided is too weak.',
+                      title: 'خطأ',
+                      desc: 'كلمة السر ضعيفة جدًا',
                     ).show();
                   } else if (e.code == 'email-already-in-use') {
                     print('The account already exists for that email.');
@@ -130,8 +130,8 @@ class _SignUpState extends State<SignUp> {
                       context: context,
                       dialogType: DialogType.error,
                       animType: AnimType.rightSlide,
-                      title: 'Error',
-                      desc: 'The account already exists for that email.',
+                      title: 'خطأ',
+                      desc: 'يوجد حساب بالفعل لهذا البريد الإلكتروني',
                     ).show();
                   }
                 } catch (e) {
