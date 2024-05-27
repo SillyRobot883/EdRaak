@@ -124,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                           style: const TextStyle(color: Colors.black),
                           cursorColor: Colors.brown[400],
                           decoration: InputDecoration(
-                            labelText: 'اسم المستخدم',
+                            labelText: 'البريد الإلكتروني',
                             labelStyle: GoogleFonts.tajawal(
                                 fontWeight: FontWeight.bold),
                             fillColor: Colors.white70,
@@ -156,62 +156,93 @@ class _LoginPageState extends State<LoginPage> {
                               fontSize: 20.0, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () async {
-                          try {
-                            final credential = await FirebaseAuth.instance
-                                .signInWithEmailAndPassword(
-                                    email: _usernameController.text,
-                                    password: _passwordController.text);
-                            if (credential.user!.emailVerified) {
-                              final snackBar = SnackBar(
-                                /// need to set following properties for best effect of awesome_snackbar_content
-                                elevation: 0,
-                                behavior: SnackBarBehavior.floating,
-                                backgroundColor: Colors.transparent,
-                                content: AwesomeSnackbarContent(
-                                  title: 'تم تسجيل الدخول بنجاح',
-                                  message: '',
-                                  contentType: ContentType.success,
-                                ),
-                              );
+                          if (_usernameController.text.isEmpty &&
+                              _passwordController.text.isEmpty) {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.error,
+                              animType: AnimType.rightSlide,
+                              title: 'خطأ',
+                              desc:
+                                  'الرجاء كتابة البريد الإلكتروني و كلمة المرور',
+                            ).show();
+                          } else if (_usernameController.text != "" &&
+                              _passwordController.text == "") {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.error,
+                              animType: AnimType.rightSlide,
+                              title: 'خطأ',
+                              desc: 'الرجاء كتابة كلمة المرور',
+                            ).show();
+                          } else if (_usernameController.text == "" &&
+                              _passwordController.text != "") {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.error,
+                              animType: AnimType.rightSlide,
+                              title: 'خطأ',
+                              desc: 'الرجاء كتابة البريد الإلكتروني',
+                            ).show();
+                          } else {
+                            try {
+                              final credential = await FirebaseAuth.instance
+                                  .signInWithEmailAndPassword(
+                                      email: _usernameController.text,
+                                      password: _passwordController.text);
+                              if (credential.user!.emailVerified) {
+                                final snackBar = SnackBar(
+                                  /// need to set following properties for best effect of awesome_snackbar_content
+                                  elevation: 0,
+                                  behavior: SnackBarBehavior.floating,
+                                  backgroundColor: Colors.transparent,
+                                  content: AwesomeSnackbarContent(
+                                    title: 'تم تسجيل الدخول بنجاح',
+                                    message: '',
+                                    contentType: ContentType.success,
+                                  ),
+                                );
 
-                              ScaffoldMessenger.of(context)
-                                ..hideCurrentSnackBar()
-                                ..showSnackBar(snackBar);
+                                ScaffoldMessenger.of(context)
+                                  ..hideCurrentSnackBar()
+                                  ..showSnackBar(snackBar);
 
-                              Navigator.of(context)
-                                  .pushReplacementNamed(" MainMenu ");
-                            } else {
-                              FirebaseAuth.instance.currentUser!
-                                  .sendEmailVerification();
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.info,
-                                animType: AnimType.rightSlide,
-                                title: 'توثيق البريد الالكتروني',
-                                desc:
-                                    'الرجاء التوجه الى البريد الاكتروني للتحقق',
-                              ).show();
-                            }
-                          } on FirebaseAuthException catch (e) {
-                            if (e.code == 'user-not-found') {
-                              print('No user found for that email.');
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.error,
-                                animType: AnimType.rightSlide,
-                                title: 'خطأ',
-                                desc:
-                                    'لا يوجد حساب مسجل بهذا البريد الالكتروني',
-                              ).show();
-                            } else if (e.code == 'wrong-password') {
-                              print('Wrong password provided for that user.');
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.error,
-                                animType: AnimType.rightSlide,
-                                title: 'خطأ',
-                                desc: 'كلمة السر خاطئة',
-                              ).show();
+                                Navigator.of(context)
+                                    .pushReplacementNamed(" MainMenu ");
+                              } else {
+                                FirebaseAuth.instance.currentUser!
+                                    .sendEmailVerification();
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.info,
+                                  animType: AnimType.rightSlide,
+                                  title: 'توثيق البريد الالكتروني',
+                                  desc:
+                                      'الرجاء التوجه الى البريد الاكتروني للتحقق',
+                                ).show();
+                              }
+                            } on FirebaseAuthException catch (e) {
+                              if (e.code == 'invalid-email') {
+                                print('No user found for that email.');
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: 'خطأ',
+                                  desc:
+                                      'لا يوجد حساب مسجل بهذا البريد الالكتروني',
+                                ).show();
+                              } else if (e.code == 'invalid-credential') {
+                                print('Wrong password provided for that user.');
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.error,
+                                  animType: AnimType.rightSlide,
+                                  title: 'خطأ',
+                                  desc:
+                                      'البريد الإلكتروني او كلمة السر خطأ, الرجاء المحاولة مرة اخرى',
+                                ).show();
+                              }
                             }
                           }
                         },

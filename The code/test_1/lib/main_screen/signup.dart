@@ -89,50 +89,123 @@ class _SignUpState extends State<SignUp> {
           CustomButtonAuth(
               title: "تسجيل",
               onPressed: () async {
-                try {
-                  final credential = await FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                    email: email.text,
-                    password: password.text,
-                  );
-                  final snackBar = SnackBar(
-                    /// need to set following properties for best effect of awesome_snackbar_content
-                    elevation: 0,
-                    behavior: SnackBarBehavior.floating,
-                    backgroundColor: Colors.transparent,
-                    content: AwesomeSnackbarContent(
-                      title: 'تم التسجيل بنجاح',
-                      message: '',
-                      contentType: ContentType.success,
-                    ),
-                  );
+                if (email.text.isEmpty &&
+                    password.text.isEmpty &&
+                    username.text.isEmpty) {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc:
+                        'الرجاء كتابة البريد الإلكتروني و كلمة السر و اسم المستخدم',
+                  ).show();
+                } else if (email.text == "" &&
+                    password.text == "" &&
+                    username.text != "") {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc: 'الرجاء كتابة كلمة السر و البريد الإلكتروني',
+                  ).show();
+                } else if (email.text != "" &&
+                    password.text == "" &&
+                    username.text == "") {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc: 'الرجاء كتابة كلمة السر و اسم المستخدم',
+                  ).show();
+                } else if (email.text == "" &&
+                    password.text != "" &&
+                    username.text == "") {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc: 'الرجاء كتابة البريد الإلكتروني و اسم المستخدم',
+                  ).show();
+                } else if (email.text != "" &&
+                    password.text != "" &&
+                    username.text == "") {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc: 'الرجاء كتابة اسم المستخدم',
+                  ).show();
+                } else if (email.text == "" &&
+                    password.text != "" &&
+                    username.text != "") {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc: 'الرجاء كتابة البريد الإلكتروني',
+                  ).show();
+                } else if (email.text != "" &&
+                    password.text == "" &&
+                    username.text != "") {
+                  AwesomeDialog(
+                    context: context,
+                    dialogType: DialogType.error,
+                    animType: AnimType.rightSlide,
+                    title: 'خطأ',
+                    desc: 'الرجاء كتابة كلمة السر',
+                  ).show();
+                } else {
+                  try {
+                    final credential = await FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                      email: email.text,
+                      password: password.text,
+                    );
+                    final snackBar = SnackBar(
+                      /// need to set following properties for best effect of awesome_snackbar_content
+                      elevation: 0,
+                      behavior: SnackBarBehavior.floating,
+                      backgroundColor: Colors.transparent,
+                      content: AwesomeSnackbarContent(
+                        title: 'تم التسجيل بنجاح',
+                        message: '',
+                        contentType: ContentType.success,
+                      ),
+                    );
 
-                  ScaffoldMessenger.of(context)
-                    ..hideCurrentSnackBar()
-                    ..showSnackBar(snackBar);
-                  Navigator.of(context).pushReplacementNamed("login");
-                } on FirebaseAuthException catch (e) {
-                  if (e.code == 'weak-password') {
-                    print('The password provided is too weak.');
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.error,
-                      animType: AnimType.rightSlide,
-                      title: 'خطأ',
-                      desc: 'كلمة السر ضعيفة جدًا',
-                    ).show();
-                  } else if (e.code == 'email-already-in-use') {
-                    print('The account already exists for that email.');
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.error,
-                      animType: AnimType.rightSlide,
-                      title: 'خطأ',
-                      desc: 'يوجد حساب بالفعل لهذا البريد الإلكتروني',
-                    ).show();
+                    ScaffoldMessenger.of(context)
+                      ..hideCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                    Navigator.of(context).pushReplacementNamed("login");
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      print('The password provided is too weak.');
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.error,
+                        animType: AnimType.rightSlide,
+                        title: 'خطأ',
+                        desc: 'كلمة السر ضعيفة جدًا',
+                      ).show();
+                    } else if (e.code == 'email-already-in-use') {
+                      print('The account already exists for that email.');
+                      AwesomeDialog(
+                        context: context,
+                        dialogType: DialogType.error,
+                        animType: AnimType.rightSlide,
+                        title: 'خطأ',
+                        desc: 'يوجد حساب بالفعل لهذا البريد الإلكتروني',
+                      ).show();
+                    }
+                  } catch (e) {
+                    print(e);
                   }
-                } catch (e) {
-                  print(e);
                 }
               }),
 
