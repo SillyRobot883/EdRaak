@@ -20,6 +20,10 @@ class AudioManager {
     _audioPlayer.stop();
   }
 
+  void setVolume(double volume) {
+    _audioPlayer.setVolume(volume);
+  }
+
   void dispose() {
     _audioPlayer.dispose();
   }

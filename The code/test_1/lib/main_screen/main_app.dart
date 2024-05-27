@@ -3,6 +3,7 @@ import 'package:test_1/main_screen/LoginPage.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:test_1/main_screen/main_menu.dart';
 import 'package:test_1/main_screen/signup.dart';
+import 'package:provider/provider.dart';
 import 'audio_manager.dart';
 
 class MainApp extends StatefulWidget {
@@ -11,19 +12,19 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  final AudioManager _audioManager = new AudioManager();
-
   @override
   void initState() {
     super.initState();
-    _audioManager.init().then((_) {
-      _audioManager.play();
+    final audioManager = Provider.of<AudioManager>(context, listen: false);
+    audioManager.init().then((_) {
+      audioManager.play();
     });
   }
 
   @override
   void dispose() {
-    _audioManager.dispose();
+    final audioManager = Provider.of<AudioManager>(context, listen: false);
+    audioManager.dispose();
     super.dispose();
   }
 

@@ -73,7 +73,7 @@ class MainMenu extends StatelessWidget {
                         fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),
                   onPressed: () {
-                    Get.to(() => settings(),
+                    Get.to(() => Settings(),
                         transition: Transition.downToUp,
                         duration: Duration(milliseconds: 400));
                   },
