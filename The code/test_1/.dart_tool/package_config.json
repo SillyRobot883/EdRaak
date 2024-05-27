@@ -374,6 +374,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "nested",
+      "rootUri": "file:///Users/azizalsheikh/.pub-cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///C:/Users/nawaf/AppData/Local/Pub/Cache/hosted/pub.dev/path-1.8.3",
       "packageUri": "lib/",
@@ -438,6 +444,12 @@
       "rootUri": "file:///C:/Users/nawaf/AppData/Local/Pub/Cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "provider",
+      "rootUri": "file:///Users/azizalsheikh/.pub-cache/hosted/pub.dev/provider-6.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "rive",
@@ -620,7 +632,9 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-05-26T22:10:15.452097Z",
+
+  "generated": "2024-05-27T14:14:54.791751Z",
+
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }
