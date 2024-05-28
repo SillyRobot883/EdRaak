@@ -13,7 +13,7 @@
    - [UI](#ui)
    - [Code](#code)
       - [Confetti Animation](#confetti-animation)
-      - [Custom Fonts (Tajawal)](#custom-fonts-tajawal)
+      - [Custom Fonts (Google-fonts)](#custom-fonts-tajawal)
       - [Background Music and Sounds](#background-music-and-sounds)
       - [Navigation](#navigation)
       - [Warnings and Dialogs](#warnings-and-dialogs)
