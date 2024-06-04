@@ -11,22 +11,34 @@ class MainApp extends StatefulWidget {
   _MainAppState createState() => _MainAppState();
 }
 
-class _MainAppState extends State<MainApp> {
+class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
+  late AudioManager _audioManager;
+
   @override
   void initState() {
     super.initState();
-    final audioManager = Provider.of<AudioManager>(context, listen: false);
-    audioManager.init().then((_) {
-      audioManager.play();
+    WidgetsBinding.instance.addObserver(this);
+    _audioManager = Provider.of<AudioManager>(context, listen: false);
+    _audioManager.init().then((_) {
+      _audioManager.play();
     });
   }
 
   @override
   void dispose() {
-    final audioManager = Provider.of<AudioManager>(context, listen: false);
-    audioManager.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    _audioManager.dispose();
     super.dispose();
   }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      _audioManager.pause();
+    } else if (state == AppLifecycleState.resumed) {
+      _audioManager.play();
+    }
+  } // to handle the audio when the app is paused or resumed.
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +52,7 @@ class _MainAppState extends State<MainApp> {
       routes: {
         "signup": (context) => SignUp(),
         "login": (context) => LoginPage(),
-        " MainMenu ": (context) => MainMenu()
+        " MainMenu ": (context) => MainMenu(),
       },
     );
   }
