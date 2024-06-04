@@ -20,8 +20,8 @@ jobs:
         
     - name: Build web
       run: |
-      cd "The code/test_1/"
-      flutter build web --release
+        cd "The code/test_1/"
+        flutter build web --release
         
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
