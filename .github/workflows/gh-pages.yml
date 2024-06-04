@@ -20,7 +20,7 @@ jobs:
         
     - name: Build web
       run: |
-      cd The\ code/test_1/
+      cd "The code/test_1/"
       flutter build web --release
         
     - name: Deploy to GitHub Pages
