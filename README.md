@@ -44,7 +44,7 @@ In designing EdRaak, we took into account the sensory needs of children with aut
 
 ## Initial Setup
 
-Getting started with EdRaak is simple. Just follow these steps:
+Getting started with EdRaak is simple. Just follow these steps: 
 
 1. **Clone the repository:**
 
