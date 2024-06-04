@@ -1,13 +1,17 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
 import 'package:test_1/main_screen/custom_backButton.dart';
 import 'package:test_1/main_screen/signup.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:logging/logging.dart';
+import 'web_interop.dart' if (dart.library.io) 'stub_interop.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -19,31 +23,65 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final Logger _logger = Logger('LoginPage');
 
   void _login() {
     String username = _usernameController.text;
-    String password = _passwordController.text;
+    String password = _usernameController.text;
 
-    // TODO: Add authentication logic here (e.g., check against a database)
-    print('Username: $username, Password: $password');
+    _logger.info('Username: $username, Password: $password');
   }
 
-  Future signInWithGoogle() async {
-    try {
+  Future<void> signInWithGoogle() async {
+    if (kIsWeb) {
+      // Web-specific code
+      try {
+        var user = await signInWithGoogle();
+        // Handle the signed-in user
+        final snackBar = SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'تم تسجيل الدخول بنجاح',
+            message: '',
+            contentType: ContentType.success,
+          ),
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+
+        Navigator.of(context).pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
+      } catch (error) {
+        _logger.severe('Error during Google Sign-In: $error');
+        final snackBar = SnackBar(
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: AwesomeSnackbarContent(
+            title: 'خطأ',
+            message: 'حدث خطأ أثناء تسجيل الدخول باستخدام Google',
+            contentType: ContentType.failure,
+          ),
+        );
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(snackBar);
+      }
+    } else {
+      // Mobile-specific code
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
         return; // The user canceled the sign-in
       }
-
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
       await FirebaseAuth.instance.signInWithCredential(credential);
-
       final snackBar = SnackBar(
         elevation: 0,
         behavior: SnackBarBehavior.floating,
@@ -60,22 +98,6 @@ class _LoginPageState extends State<LoginPage> {
         ..showSnackBar(snackBar);
 
       Navigator.of(context).pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
-    } catch (error) {
-      print("Error during Google Sign-In: $error");
-      final snackBar = SnackBar(
-        elevation: 0,
-        behavior: SnackBarBehavior.floating,
-        backgroundColor: Colors.transparent,
-        content: AwesomeSnackbarContent(
-          title: 'خطأ',
-          message: 'حدث خطأ أثناء تسجيل الدخول باستخدام Google',
-          contentType: ContentType.failure,
-        ),
-      );
-
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(snackBar);
     }
   }
 
@@ -171,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                               title: 'خطأ',
                               desc: 'الرجاء كتابة البريد الإلكتروني و كلمة المرور',
                             ).show();
-                          } else if (_usernameController.text != "" && _passwordController.text == "") {
+                          } else if (_usernameController.text.isNotEmpty && _passwordController.text.isEmpty) {
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.error,
@@ -179,7 +201,7 @@ class _LoginPageState extends State<LoginPage> {
                               title: 'خطأ',
                               desc: 'الرجاء كتابة كلمة المرور',
                             ).show();
-                          } else if (_usernameController.text == "" && _passwordController.text != "") {
+                          } else if (_usernameController.text.isEmpty && _passwordController.text.isNotEmpty) {
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.error,
@@ -222,7 +244,7 @@ class _LoginPageState extends State<LoginPage> {
                               }
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'invalid-email') {
-                                print('No user found for that email.');
+                                _logger.warning('No user found for that email.');
                                 AwesomeDialog(
                                   context: context,
                                   dialogType: DialogType.error,
@@ -230,8 +252,8 @@ class _LoginPageState extends State<LoginPage> {
                                   title: 'خطأ',
                                   desc: 'لا يوجد حساب مسجل بهذا البريد الالكتروني',
                                 ).show();
-                              } else if (e.code == 'invalid-credential') {
-                                print('Wrong password provided for that user.');
+                              } else if (e.code == 'wrong-password') {
+                                _logger.warning('Wrong password provided for that user.');
                                 AwesomeDialog(
                                   context: context,
                                   dialogType: DialogType.error,
@@ -303,7 +325,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () async {
-                          if (_usernameController.text == "") {
+                          if (_usernameController.text.isEmpty) {
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.info,
@@ -325,7 +347,7 @@ class _LoginPageState extends State<LoginPage> {
                               desc: 'لقد تم ارسال على بريدك الالكتروني تعين كلمة مرور جديدة',
                             ).show();
                           } catch (e) {
-                            print(e);
+                            _logger.severe('Error sending password reset email: $e');
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.error,
