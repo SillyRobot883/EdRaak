@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_1/main_screen/main_menu.dart';
-import '../../game1/The_game.dart';
+import '../game1/the_Game.dart';
 import 'package:test_1/choose_game_screen/choose_game_button.dart';
 import 'package:test_1/choose_game_screen/game_button1.dart';
 import 'package:test_1/game2/lib/quiz.dart';

@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:test_1/choose_game_screen/game_catalog_screen.dart';
-import 'package:test_1/main_screen/LoginPage.dart';
-import 'package:test_1/main_screen/Settings.dart';
+import 'package:test_1/main_screen/loginPage.dart';
+import 'package:test_1/main_screen/settings.dart';
 import 'package:get/get.dart';
 
 class MainMenu extends StatelessWidget {

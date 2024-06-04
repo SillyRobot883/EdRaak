@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:confetti/confetti.dart';
-import 'package:test_1/game1/The_game.dart';
+import 'package:test_1/game1/the_Game.dart';
 import 'package:test_1/main_screen/main_menu.dart';
 
 class ResultPage extends StatefulWidget {

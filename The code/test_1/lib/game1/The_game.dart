@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ImageMatchingGameScreen.dart'; // Ensure the correct import
+import 'imageMatchingGameScreen.dart'; // Ensure the correct import
 
 void main() {
   runApp(The_game());

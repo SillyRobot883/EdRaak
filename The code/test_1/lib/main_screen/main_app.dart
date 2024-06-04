@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_1/main_screen/LoginPage.dart';
+import 'package:test_1/main_screen/loginPage.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:test_1/main_screen/main_menu.dart';
 import 'package:test_1/main_screen/signup.dart';
