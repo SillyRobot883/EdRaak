@@ -33,7 +33,7 @@ In designing EdRaak, we took into account the sensory needs of children with aut
 
 ## Features
 
-- **Customized Games:** We’ve created a variety of games and puzzles tailored to the unique needs of children with autism.
+- **Customized Games:** We’ve created a variety of games and puzzles tailored to the unique needs of children with autism. 
 - **Multi-dimensional Learning:** Our activities aim to enhance physical, social, cognitive, and emotional abilities.
 - **Fun and Encouraging:** We strive to create a joyful and supportive learning environment.
 - **Seamless Navigation:** Enjoy easy and intuitive transitions between screens.
