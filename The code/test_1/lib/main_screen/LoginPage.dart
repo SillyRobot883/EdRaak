@@ -29,42 +29,54 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    if (googleUser == null) {
-      return;
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        return; // The user canceled the sign-in
+      }
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      final snackBar = SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'تم تسجيل الدخول بنجاح',
+          message: '',
+          contentType: ContentType.success,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
+
+      Navigator.of(context).pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
+    } catch (error) {
+      print("Error during Google Sign-In: $error");
+      final snackBar = SnackBar(
+        elevation: 0,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Colors.transparent,
+        content: AwesomeSnackbarContent(
+          title: 'خطأ',
+          message: 'حدث خطأ أثناء تسجيل الدخول باستخدام Google',
+          contentType: ContentType.failure,
+        ),
+      );
+
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(snackBar);
     }
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(credential);
-
-    final snackBar = SnackBar(
-      /// need to set following properties for best effect of awesome_snackbar_content
-      elevation: 0,
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Colors.transparent,
-      content: AwesomeSnackbarContent(
-        title: 'تم تسجيل الدخول بنجاح',
-        message: '',
-        contentType: ContentType.success,
-      ),
-    );
-
-    ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(snackBar);
-
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil(" MainMenu ", (route) => false);
   }
 
   @override
@@ -73,8 +85,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image:
-                AssetImage('lib/assets/image/images/Login_Page_Background.png'),
+            image: AssetImage('lib/assets/image/images/Login_Page_Background.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -98,8 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                       Stack(
                         children: [
                           const Image(
-                            image: AssetImage(
-                                'lib/assets/image/images/main_CharacterTheme.png'),
+                            image: AssetImage('lib/assets/image/images/main_CharacterTheme.png'),
                             height: 150,
                             width: 150,
                           ),
@@ -125,8 +135,7 @@ class _LoginPageState extends State<LoginPage> {
                           cursorColor: Colors.brown[400],
                           decoration: InputDecoration(
                             labelText: 'البريد الإلكتروني',
-                            labelStyle: GoogleFonts.tajawal(
-                                fontWeight: FontWeight.bold),
+                            labelStyle: GoogleFonts.tajawal(fontWeight: FontWeight.bold),
                             fillColor: Colors.white70,
                             filled: true,
                           ),
@@ -141,8 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                           cursorColor: Colors.brown[400],
                           decoration: InputDecoration(
                             labelText: 'كلمة السر',
-                            labelStyle: GoogleFonts.tajawal(
-                                fontWeight: FontWeight.bold),
+                            labelStyle: GoogleFonts.tajawal(fontWeight: FontWeight.bold),
                             fillColor: Colors.white70,
                             filled: true,
                           ),
@@ -152,22 +160,18 @@ class _LoginPageState extends State<LoginPage> {
                       ElevatedButton(
                         child: Text(
                           'تسجيل دخول',
-                          style: GoogleFonts.tajawal(
-                              fontSize: 20.0, fontWeight: FontWeight.bold),
+                          style: GoogleFonts.tajawal(fontSize: 20.0, fontWeight: FontWeight.bold),
                         ),
                         onPressed: () async {
-                          if (_usernameController.text.isEmpty &&
-                              _passwordController.text.isEmpty) {
+                          if (_usernameController.text.isEmpty && _passwordController.text.isEmpty) {
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.error,
                               animType: AnimType.rightSlide,
                               title: 'خطأ',
-                              desc:
-                                  'الرجاء كتابة البريد الإلكتروني و كلمة المرور',
+                              desc: 'الرجاء كتابة البريد الإلكتروني و كلمة المرور',
                             ).show();
-                          } else if (_usernameController.text != "" &&
-                              _passwordController.text == "") {
+                          } else if (_usernameController.text != "" && _passwordController.text == "") {
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.error,
@@ -175,8 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                               title: 'خطأ',
                               desc: 'الرجاء كتابة كلمة المرور',
                             ).show();
-                          } else if (_usernameController.text == "" &&
-                              _passwordController.text != "") {
+                          } else if (_usernameController.text == "" && _passwordController.text != "") {
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.error,
@@ -186,13 +189,12 @@ class _LoginPageState extends State<LoginPage> {
                             ).show();
                           } else {
                             try {
-                              final credential = await FirebaseAuth.instance
-                                  .signInWithEmailAndPassword(
-                                      email: _usernameController.text,
-                                      password: _passwordController.text);
+                              final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                                email: _usernameController.text,
+                                password: _passwordController.text,
+                              );
                               if (credential.user!.emailVerified) {
                                 final snackBar = SnackBar(
-                                  /// need to set following properties for best effect of awesome_snackbar_content
                                   elevation: 0,
                                   behavior: SnackBarBehavior.floating,
                                   backgroundColor: Colors.transparent,
@@ -207,18 +209,15 @@ class _LoginPageState extends State<LoginPage> {
                                   ..hideCurrentSnackBar()
                                   ..showSnackBar(snackBar);
 
-                                Navigator.of(context)
-                                    .pushReplacementNamed(" MainMenu ");
+                                Navigator.of(context).pushReplacementNamed(" MainMenu ");
                               } else {
-                                FirebaseAuth.instance.currentUser!
-                                    .sendEmailVerification();
+                                FirebaseAuth.instance.currentUser!.sendEmailVerification();
                                 AwesomeDialog(
                                   context: context,
                                   dialogType: DialogType.info,
                                   animType: AnimType.rightSlide,
                                   title: 'توثيق البريد الالكتروني',
-                                  desc:
-                                      'الرجاء التوجه الى البريد الاكتروني للتحقق',
+                                  desc: 'الرجاء التوجه الى البريد الاكتروني للتحقق',
                                 ).show();
                               }
                             } on FirebaseAuthException catch (e) {
@@ -229,8 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                                   dialogType: DialogType.error,
                                   animType: AnimType.rightSlide,
                                   title: 'خطأ',
-                                  desc:
-                                      'لا يوجد حساب مسجل بهذا البريد الالكتروني',
+                                  desc: 'لا يوجد حساب مسجل بهذا البريد الالكتروني',
                                 ).show();
                               } else if (e.code == 'invalid-credential') {
                                 print('Wrong password provided for that user.');
@@ -239,8 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                                   dialogType: DialogType.error,
                                   animType: AnimType.rightSlide,
                                   title: 'خطأ',
-                                  desc:
-                                      'البريد الإلكتروني او كلمة السر خطأ, الرجاء المحاولة مرة اخرى',
+                                  desc: 'البريد الإلكتروني او كلمة السر خطأ, الرجاء المحاولة مرة اخرى',
                                 ).show();
                               }
                             }
@@ -257,9 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                             children: [
                               Text(
                                 'سجل الدخول مع قوقل',
-                                style: GoogleFonts.tajawal(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                style: GoogleFonts.tajawal(fontSize: 20.0, fontWeight: FontWeight.bold),
                               ),
                               Image.asset(
                                 "images/Google_Logo.jpg",
@@ -277,13 +272,12 @@ class _LoginPageState extends State<LoginPage> {
                       ElevatedButton(
                         onPressed: () {
                           Get.off(() => GameCatalog(),
-                              transition: Transition.zoom,
-                              duration: Duration(milliseconds: 300));
+                            transition: Transition.zoom,
+                            duration: Duration(milliseconds: 300));
                         },
                         child: Text(
                           'إلعب كـضيف',
-                          style: GoogleFonts.tajawal(
-                              fontSize: 16.0, fontWeight: FontWeight.bold),
+                          style: GoogleFonts.tajawal(fontSize: 16.0, fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(height: 10),
@@ -295,23 +289,17 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                         child: Center(
-                            child: Text.rich(TextSpan(children: [
-                          TextSpan(
-                            text: "ما عندك حساب ؟ ",
-                            style: GoogleFonts.tajawal(
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w700,
+                          child: Text.rich(TextSpan(children: [
+                            TextSpan(
+                              text: "ما عندك حساب ؟ ",
+                              style: GoogleFonts.tajawal(fontSize: 15.0, fontWeight: FontWeight.w700),
                             ),
-                          ),
-                          TextSpan(
-                            text: " سجل الان",
-                            style: GoogleFonts.tajawal(
-                              color: Colors.blue,
-                              fontSize: 17.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ]))),
+                            TextSpan(
+                              text: " سجل الان",
+                              style: GoogleFonts.tajawal(color: Colors.blue, fontSize: 17.0, fontWeight: FontWeight.bold),
+                            )
+                          ])),
+                        ),
                       ),
                       InkWell(
                         onTap: () async {
@@ -321,21 +309,20 @@ class _LoginPageState extends State<LoginPage> {
                               dialogType: DialogType.info,
                               animType: AnimType.rightSlide,
                               title: 'خطأ',
-                              desc:
-                                  'الرجاء كتابة البريد الاكتروني في حقل المستخدم',
+                              desc: 'الرجاء كتابة البريد الاكتروني في حقل المستخدم',
                             ).show();
                             return;
                           }
                           try {
                             await FirebaseAuth.instance.sendPasswordResetEmail(
-                                email: _usernameController.text);
+                              email: _usernameController.text,
+                            );
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.success,
                               animType: AnimType.rightSlide,
                               title: 'إعادة تعيين كلمة المرور',
-                              desc:
-                                  'لقد تم ارسال على بريدك الالكتروني تعين كلمة مرور جديدة',
+                              desc: 'لقد تم ارسال على بريدك الالكتروني تعين كلمة مرور جديدة',
                             ).show();
                           } catch (e) {
                             print(e);
@@ -349,23 +336,17 @@ class _LoginPageState extends State<LoginPage> {
                           }
                         },
                         child: Center(
-                            child: Text.rich(TextSpan(children: [
-                          TextSpan(
-                            text: "نسيت  ",
-                            style: GoogleFonts.tajawal(
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w700,
+                          child: Text.rich(TextSpan(children: [
+                            TextSpan(
+                              text: "نسيت  ",
+                              style: GoogleFonts.tajawal(fontSize: 15.0, fontWeight: FontWeight.w700),
                             ),
-                          ),
-                          TextSpan(
-                            text: "كلمة السر ؟",
-                            style: GoogleFonts.tajawal(
-                              color: Colors.blue,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ]))),
+                            TextSpan(
+                              text: "كلمة السر ؟",
+                              style: GoogleFonts.tajawal(color: Colors.blue, fontSize: 16.0, fontWeight: FontWeight.bold),
+                            )
+                          ])),
+                        ),
                       )
                     ],
                   ),
