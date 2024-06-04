@@ -43,7 +43,7 @@ jobs:
         continue-on-error: true
 
       - name: Build APK
-        run: flutter build apk --release --incremental
+        run: flutter build apk --release
         working-directory: ${{ env.PROJECT_DIR }}
 
       - name: Find APK Path
