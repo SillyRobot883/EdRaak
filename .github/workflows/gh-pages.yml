@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages 
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -6,28 +6,36 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
-    
+
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.19.5'
         channel: 'stable'
-        
+
     - name: Build web
       run: |
         cd "The code/test_1/"
         flutter build web --release
-        
+
+    - name: Clean GitHub Pages Repo
+      run: |
+        git clone https://github.com/SillyRobot883/SillyRobot883.github.io.git tmp_repo
+        cd tmp_repo
+        git rm -rf .
+        git commit -m "Clean old build"
+        git push
+
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./The\ code/test_1/build/web
-        destination_dir: .
-        force_orphan: true
-        
+      run: |
+        cd "The code/test_1/build/web"
+        git init
+        git remote add origin https://github.com/SillyRobot883/SillyRobot883.github.io.git
+        git add .
+        git commit -m "Deploy to GitHub Pages"
+        git push --force https://GH_PAGES_TOKEN:${{ secrets.GH_PAGES_TOKEN }}@github.com/SillyRobot883/SillyRobot883.github.io.git master:master
