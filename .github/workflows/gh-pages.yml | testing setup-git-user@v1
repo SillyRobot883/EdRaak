@@ -23,12 +23,16 @@ jobs:
         cd "The code/test_1/"
         flutter build web --release
 
+    - name: Set up Git user
+      uses: fregante/setup-git-user@v1
+      with:
+        name: "GitHub Action [Bot]"
+        email: "aziz.alk550@gmail.com"
+
     - name: Clean GitHub Pages Repo
       run: |
         git clone https://github.com/SillyRobot883/SillyRobot883.github.io.git tmp_repo
         cd tmp_repo
-        git config user.name "GitHub Action [Bot]"
-        git config user.email "aziz.alk550@gmail.com"
         git rm -rf .
         git commit -m "Clean old build"
         git push
