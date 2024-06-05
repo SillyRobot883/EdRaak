@@ -42,7 +42,7 @@ In designing EdRaak, we took into account the sensory needs of children with aut
 - **Settings Screen:** Customize colors and sounds to your liking and logging out of your account.
 - **Game Catalog:** Browse and select different games easily from our choose game screen.
 
-## Initial Setup
+## Initial Setup 
 
 Getting started with EdRaak is simple. Just follow these steps: 
 
@@ -53,7 +53,7 @@ Getting started with EdRaak is simple. Just follow these steps:
    ```
 
 2. **Install dependencies:**
-
+  
    ```bash
    cd EdRaak
    npm install
