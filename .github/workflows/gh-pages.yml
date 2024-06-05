@@ -11,19 +11,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: fregante/setup-git-user@v2
 
     - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.19.5'
         channel: 'stable'
-
+    
     - name: Build web
       run: |
         cd "The code/test_1/"
         flutter build web --release
-        
+                  
+    - name: Setup Git user
+      uses: fregante/setup-git-user@v2.0.1
+
     - name: Clean GitHub Pages Repo
       run: |
         git clone https://github.com/SillyRobot883/SillyRobot883.github.io.git tmp_repo
