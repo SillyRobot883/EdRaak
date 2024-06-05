@@ -27,8 +27,8 @@ jobs:
       run: |
         git clone https://github.com/SillyRobot883/SillyRobot883.github.io.git tmp_repo
         cd tmp_repo
-        git config --global user.name "GitHub Action [Bot]"
-        git config --global user.email "aziz.alk550@gmail.com"
+        git config user.name "GitHub Action [Bot]"
+        git config user.email "aziz.alk550@gmail.com"
         git rm -rf .
         git commit -m "Clean old build"
         git push
