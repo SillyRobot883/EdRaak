@@ -22,23 +22,26 @@ jobs:
       run: |
         cd "The code/test_1/"
         flutter build web --release
-                  
+
     - name: Setup Git user
       uses: fregante/setup-git-user@v2.0.1
+      with:
+        name: "GitHub Action [Bot]"
+        email: "aziz.alk550@gmail.com"
 
     - name: Clean GitHub Pages Repo
       run: |
-        git clone https://github.com/SillyRobot883/SillyRobot883.github.io.git tmp_repo
+        git clone https://GH_PAGES_TOKEN:${{ secrets.GH_PAGES_TOKEN }}@github.com/SillyRobot883/SillyRobot883.github.io.git tmp_repo
         cd tmp_repo
         git rm -rf .
         git commit -m "Clean old build"
-        git push
+        git push https://GH_PAGES_TOKEN:${{ secrets.GH_PAGES_TOKEN }}@github.com/SillyRobot883/SillyRobot883.github.io.git master:master
 
     - name: Deploy to GitHub Pages
       run: |
         cd "The code/test_1/build/web"
         git init
-        git remote add origin https://github.com/SillyRobot883/SillyRobot883.github.io.git
+        git remote add origin https://GH_PAGES_TOKEN:${{ secrets.GH_PAGES_TOKEN }}@github.com/SillyRobot883/SillyRobot883.github.io.git
         git add .
         git commit -m "Deploy to GitHub Pages"
-        git push --force https://GH_PAGES_TOKEN:${{ secrets.GH_PAGES_TOKEN }}@github.com/SillyRobot883/SillyRobot883.github.io.git master:master
+        git push --force https://GH_PAGES_TOKEN:${{ secrets.GH_PAGES_TOKEN }}@github.com/SillyRobot883/SillyRobot883.github.io.git main:main
